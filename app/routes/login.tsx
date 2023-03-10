@@ -7,7 +7,7 @@ import {
   useActionData,
   useSearchParams,
 } from "@remix-run/react";
-import { login } from "~/utils/session.server";
+import { login, createUserSession } from "~/utils/session.server";
 import stylesUrl from "~/styles/login.css";
 import { db } from "~/utils/db.server";
 import { badRequest } from "~/utils/request.server";
@@ -85,11 +85,12 @@ export const action = async ({ request }: ActionArgs) => {
       // login to get the user
       // if there's no user, return the fields and a formError
       // if there is a user, create their session and redirect to /jokes
-      return badRequest({
-        fieldErrors: null,
-        fields,
-        formError: "Not implemented",
-      });
+       return createUserSession(user.id, redirectTo);
+      // return badRequest({
+      //   fieldErrors: null,
+      //   fields,
+      //   formError: "Not implemented",
+      // });
     }
     case "register": {
       const userExists = await db.user.findFirst({
