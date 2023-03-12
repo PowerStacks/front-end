@@ -1,4 +1,4 @@
-import type { User } from "@prisma/client";
+// import type { User } from "@prisma/client";
 import type {
   LinksFunction,
   LoaderArgs,
@@ -33,6 +33,8 @@ export const loader = async ({ request }: LoaderArgs) => {
 };
 
 export default function JokesRoute() {
+
+  
   const data = useLoaderData<typeof loader>();
 
   return (
