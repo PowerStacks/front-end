@@ -1,16 +1,29 @@
 import type {
   ActionArgs,
   LinksFunction,
+  MetaFunction,
 } from "@remix-run/node";
+// import { json } from "@remix-run/node";
 import {
   Link,
   useActionData,
   useSearchParams,
 } from "@remix-run/react";
-import { login,  register, createUserSession } from "~/utils/session.server";
+
 import stylesUrl from "~/styles/login.css";
 import { db } from "~/utils/db.server";
 import { badRequest } from "~/utils/request.server";
+import {
+  createUserSession,
+  login,
+  register,
+} from "~/utils/session.server";
+
+export const meta: MetaFunction = () => ({
+  description:
+    "Login to submit your own jokes to Remix Jokes!",
+  title: "Remix Jokes | Login",
+});
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: stylesUrl },
@@ -72,8 +85,7 @@ export const action = async ({ request }: ActionArgs) => {
 
   switch (loginType) {
     case "login": {
-        const user = await login({ username, password });
-      console.log({ user });
+      const user = await login({ username, password });
       if (!user) {
         return badRequest({
           fieldErrors: null,
@@ -81,16 +93,7 @@ export const action = async ({ request }: ActionArgs) => {
           formError: `Username/Password combination is incorrect`,
         });
       }
-      // if there is a user, create their session and redirect to /jokes
-      // login to get the user
-      // if there's no user, return the fields and a formError
-      // if there is a user, create their session and redirect to /jokes
-       return createUserSession(user.id, redirectTo);
-      // return badRequest({
-      //   fieldErrors: null,
-      //   fields,
-      //   formError: "Not implemented",
-      // });
+      return createUserSession(user.id, redirectTo);
     }
     case "register": {
       const userExists = await db.user.findFirst({
@@ -103,8 +106,6 @@ export const action = async ({ request }: ActionArgs) => {
           formError: `User with username ${username} already exists`,
         });
       }
-      // create the user
-      // create their session and redirect to /jokes
       const user = await register({ username, password });
       if (!user) {
         return badRequest({
@@ -126,7 +127,6 @@ export const action = async ({ request }: ActionArgs) => {
 };
 
 export default function Login() {
-  
   const actionData = useActionData<typeof action>();
   const [searchParams] = useSearchParams();
   return (
