@@ -114,7 +114,7 @@ function AuthProvider({ children }) {
       password,
     });
     const { accessToken, user } = response.data;
-
+console.log(accessToken, user, axios.post, axios);
     setSession(accessToken);
     dispatch({
       type: 'LOGIN',
@@ -124,12 +124,14 @@ function AuthProvider({ children }) {
     });
   };
 
-  const register = async (email, password, firstName, lastName) => {
+  const register = async (email, password, 
+    // firstName, lastName
+    ) => {
     const response = await axios.post('/api/account/register', {
       email,
       password,
-      firstName,
-      lastName,
+      // firstName,
+      // lastName,
     });
     const { accessToken, user } = response.data;
 
