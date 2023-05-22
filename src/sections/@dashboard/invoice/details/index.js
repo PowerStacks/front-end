@@ -22,7 +22,7 @@ import Label from '../../../../components/Label';
 import Image from '../../../../components/Image';
 import Scrollbar from '../../../../components/Scrollbar';
 //
-import InvoiceToolbar from './InvoiceToolbar';
+// import InvoiceToolbar from './InvoiceToolbar';
 
 // ----------------------------------------------------------------------
 
@@ -62,7 +62,7 @@ export default function InvoiceDetails({ invoice }) {
 
   return (
     <>
-      <InvoiceToolbar invoice={invoice} />
+      {/* <InvoiceToolbar invoice={invoice} /> */}
 
       <Card sx={{ pt: 5, px: 5 }}>
         <Grid container>

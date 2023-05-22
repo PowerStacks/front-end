@@ -7,7 +7,7 @@ export { default as ChatMessageList } from './ChatMessageList';
 export { default as ChatHeaderDetail } from './ChatHeaderDetail';
 export { default as ChatMessageInput } from './ChatMessageInput';
 export { default as ChatContactSearch } from './ChatContactSearch';
-export { default as ChatHeaderCompose } from './ChatHeaderCompose';
+// export { default as ChatHeaderCompose } from './ChatHeaderCompose';
 export { default as ChatSearchResults } from './ChatSearchResults';
 export { default as ChatRoomAttachment } from './ChatRoomAttachment';
 export { default as ChatConversationItem } from './ChatConversationItem';
