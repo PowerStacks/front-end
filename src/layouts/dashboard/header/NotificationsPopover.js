@@ -4,15 +4,15 @@ import { useState } from 'react';
 // @mui
 import {
   Box,
-  List,
+  // List,
   Badge,
-  Button,
+  // Button,
   Avatar,
   Tooltip,
-  Divider,
+  // Divider,
   Typography,
   ListItemText,
-  ListSubheader,
+  // ListSubheader,
   ListItemAvatar,
   ListItemButton,
 } from '@mui/material';
@@ -22,7 +22,7 @@ import { fToNow } from '../../../utils/formatTime';
 import { _notifications } from '../../../_mock';
 // components
 import Iconify from '../../../components/Iconify';
-import Scrollbar from '../../../components/Scrollbar';
+// import Scrollbar from '../../../components/Scrollbar';
 import MenuPopover from '../../../components/MenuPopover';
 import { IconButtonAnimate } from '../../../components/animate';
 
@@ -83,7 +83,7 @@ export default function NotificationsPopover() {
           )}
         </Box>
 
-        <Divider sx={{ borderStyle: 'dashed' }} />
+        {/* <Divider sx={{ borderStyle: 'dashed' }} />
 
         <Scrollbar sx={{ height: { xs: 340, sm: 'auto' } }}>
           <List
@@ -119,7 +119,7 @@ export default function NotificationsPopover() {
           <Button fullWidth disableRipple>
             View All
           </Button>
-        </Box>
+        </Box> */}
       </MenuPopover>
     </>
   );
