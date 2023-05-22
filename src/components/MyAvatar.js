@@ -12,7 +12,8 @@ export default function MyAvatar({ ...other }) {
 
   return (
     <Avatar
-      src={user?.photoURL}
+      src="https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png"
+      // src={user?.photoURL}
       alt={user?.displayName}
       color={user?.photoURL ? 'default' : createAvatar(user?.displayName).color}
       {...other}

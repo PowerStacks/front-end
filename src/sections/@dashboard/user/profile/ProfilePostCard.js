@@ -26,7 +26,7 @@ import { fShortenNumber } from '../../../../utils/formatNumber';
 import Image from '../../../../components/Image';
 import Iconify from '../../../../components/Iconify';
 import MyAvatar from '../../../../components/MyAvatar';
-import EmojiPicker from '../../../../components/EmojiPicker';
+// import EmojiPicker from '../../../../components/EmojiPicker';
 
 // ----------------------------------------------------------------------
 
@@ -168,7 +168,7 @@ export default function ProfilePostCard({ post }) {
                   <IconButton size="small" onClick={handleClickAttach}>
                     <Iconify icon={'ic:round-add-photo-alternate'} width={24} height={24} />
                   </IconButton>
-                  <EmojiPicker alignRight value={message} setValue={setMessage} />
+                  {/* <EmojiPicker alignRight value={message} setValue={setMessage} /> */}
                 </InputAdornment>
               ),
             }}

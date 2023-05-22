@@ -10,7 +10,7 @@ import { PATH_AUTH } from '../../routes/paths';
 import useAuth from '../../hooks/useAuth';
 import useResponsive from '../../hooks/useResponsive';
 // guards
-import GuestGuard from '../../guards/GuestGuard';
+// import GuestGuard from '../../guards/GuestGuard';
 // components
 import Page from '../../components/Page';
 import Logo from '../../components/Logo';
@@ -71,7 +71,7 @@ export default function Login() {
   // const mdUp = useResponsive('up', 'md');
 
   return (
-    <GuestGuard>
+    // <GuestGuard>
       <Page title="Login">
         <RootStyle>
           <HeaderStyle>
@@ -141,6 +141,6 @@ export default function Login() {
           </Container>
         </RootStyle>
       </Page>
-    </GuestGuard>
+    // </GuestGuard>
   );
 }

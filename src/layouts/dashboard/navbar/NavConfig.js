@@ -45,17 +45,19 @@ const navConfig = [
     items: [
       // USER
       {
-        title: 'Account',
-        path: PATH_DASHBOARD.user.root,
+         title: 'Settings', path: PATH_DASHBOARD.user.account,
         icon: ICONS.user,
-        children: [
-          { title: 'Profile', path: PATH_DASHBOARD.user.profile },
+        // title: 'Account',
+        // path: PATH_DASHBOARD.user.root,
+        // icon: ICONS.user,
+        // children: [
+          // { title: 'Profile', path: PATH_DASHBOARD.user.profile },
           // { title: 'cards', path: PATH_DASHBOARD.user.cards },
           // { title: 'list', path: PATH_DASHBOARD.user.list },
           // { title: 'create', path: PATH_DASHBOARD.user.new },
           // { title: 'edit', path: PATH_DASHBOARD.user.demoEdit },
-          { title: 'Settings', path: PATH_DASHBOARD.user.account },
-        ],
+          // { title: 'Settings', path: PATH_DASHBOARD.user.account },
+        // ],
       },
 
       // E-COMMERCE
