@@ -7,6 +7,11 @@ import Image from '../../components/Image';
 import { MotionViewport, varFade } from '../../components/animate';
 import lightning from '../../../public/images/lightning.png'
 import Iconify from '../../components/Iconify';
+// routes
+import { PATH_AUTH } from '../../routes/paths';
+// next
+import NextLink from 'next/link';
+
 
 // ----------------------------------------------------------------------
 
@@ -41,15 +46,15 @@ export default function HomeAdvertisement() {
           }}
         >
           <m.div animate={{ y: [-20, 0, -20] }} transition={{ duration: 4, repeat: Infinity }}>
-            <Box sx= {{width: 460, pt: '35%'}}>
-            <Image
-              visibleByDefault
-              alt="rocket"
-              src={lightning.src}
-              disabledEffect
-              sx={{ width: 230, margin: 'auto' }}
-              ratio={undefined}
-            />
+            <Box sx={{ width: 460, pt: '35%' }}>
+              <Image
+                visibleByDefault
+                alt="rocket"
+                src={lightning.src}
+                disabledEffect
+                sx={{ width: 230, margin: 'auto' }}
+                ratio={undefined}
+              />
             </Box>
           </m.div>
         </Box>
@@ -89,6 +94,7 @@ export default function HomeAdvertisement() {
             </Button>
           </m.div> */}
           <m.div variants={varFade().inRight}>
+            <NextLink href={PATH_AUTH.register} passHref>
               <Button
                 variant="outlined"
                 color="inherit"
@@ -97,7 +103,8 @@ export default function HomeAdvertisement() {
               >
                 Let's Go
               </Button>
-            </m.div>
+            </NextLink>
+          </m.div>
         </Box>
       </ContentStyle>
     </Container>

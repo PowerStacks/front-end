@@ -12,6 +12,11 @@ import cssStyles from '../../utils/cssStyles';
 import { HEADER } from '../../config';
 // components
 import Logo from '../../components/Logo';
+// routes
+import { PATH_AUTH } from '../../routes/paths';
+// next
+import NextLink from 'next/link';
+
 // import { ReactComponent as Logo } from "../../assets/images/logo-color.svg";
 
 // import Label from '../../components/Label'; 
@@ -83,16 +88,13 @@ export default function MainHeader() {
             v3.3.0
           </Label> */}
           <Box sx={{ flexGrow: 1 }} />
- 
-          {/* {isDesktop && <MenuDesktop isOffset={isOffset} isHome={isHome} navConfig={navConfig} />} */}
 
-          <Button
-            variant="contained"
-            target="_blank"
-            rel="noopener"
-          >
-           Register 
-          </Button>
+          {/* {isDesktop && <MenuDesktop isOffset={isOffset} isHome={isHome} navConfig={navConfig} />} */}
+          <NextLink href={PATH_AUTH.register} passHref>
+            <Button variant="contained" target="_blank" rel="noopener">
+              Register
+            </Button>
+          </NextLink>
 
           {/* {!isDesktop && <MenuMobile isOffset={isOffset} isHome={isHome} navConfig={navConfig} />} */}
         </Container>

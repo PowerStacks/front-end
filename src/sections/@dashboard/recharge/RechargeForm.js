@@ -27,7 +27,7 @@ export default function LoginForm() {
   // const [showPassword, setShowPassword] = useState(false);
 
   const LoginSchema = Yup.object().shape({
-    meterNumber: Yup.string()('Must be a valid meter number').required('Meter Number is required'),
+    meterNumber: Yup.string().required('Meter Number is required'),
     email: Yup.string().email('Email must be a valid email').required('Email is required'),
     // password: Yup.string().required('Password is required'),
   });
@@ -79,7 +79,7 @@ export default function LoginForm() {
         </NextLink>
       </Stack> */}
 
-      <LoadingButton fullWidth size="large" type="submit" variant="contained" loading={isSubmitting}>
+      <LoadingButton fullWidth size="large" type="submit" variant="contained" loading={isSubmitting} sx={{ my: 2 }}>
         Recharge
       </LoadingButton>
     </FormProvider>

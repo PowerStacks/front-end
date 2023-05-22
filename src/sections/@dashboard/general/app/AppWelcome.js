@@ -4,7 +4,7 @@ import { styled } from '@mui/material/styles';
 import { Typography, Button, Card, CardContent } from '@mui/material';
 // import { SeoIllustration } from '../../../../assets';
 // routes
-import { PATH_AUTH } from '../../../../routes/paths';
+import { PATH_DASHBOARD} from '../../../../routes/paths';
 // next
 import NextLink from 'next/link';
 
@@ -34,7 +34,8 @@ export default function AppWelcome({ displayName }) {
     <RootStyle>
       <CardContent
         sx={{
-          p: { md: 0 },
+          pt: 5,
+          p: { md: 5 },
           pl: { md: 5 },
           color: 'grey.800',
         }}
@@ -47,7 +48,7 @@ export default function AppWelcome({ displayName }) {
         <Typography variant="body2" sx={{ pb: { xs: 3, xl: 5 }, maxWidth: 480, mx: 'auto' }}>
           {`I's nice having you back, how may we be of service today?`}
         </Typography>
-        <NextLink href={PATH_AUTH.register} passHref>
+        <NextLink href={PATH_DASHBOARD.recharge} passHref>
           <Button variant="contained">Recharge Meter</Button>
         </NextLink>
       </CardContent>

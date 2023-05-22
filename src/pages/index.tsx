@@ -12,7 +12,7 @@ import {
   // HomeLookingFor,
   // HomeColorPresets,
   // HomePricingPlans,
-  HomeAdvertisement,
+  HomeAdvertisement, 
   HomeCleanInterfaces,
   HomeHugePackElements,
 } from '../sections/home';
