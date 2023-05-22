@@ -52,7 +52,7 @@ export default function HomeAdvertisement() {
                 alt="rocket"
                 src={lightning.src}
                 disabledEffect
-                sx={{ width: 230, margin: 'auto' }}
+                sx={{ width: '25%', margin: 'auto' }}
                 ratio={undefined}
               />
             </Box>

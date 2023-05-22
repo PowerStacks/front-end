@@ -116,9 +116,9 @@ export default function HomeHugePackElements() {
                   variant="outlined"
                   target="_blank"
                   rel="noopener"
-                  href="https://www.minimals.cc/components/"
+                  href="/"
                 >
-                  View All Components
+                 Learn more
                 </Button>
               </m.div>
             </ContentStyle>

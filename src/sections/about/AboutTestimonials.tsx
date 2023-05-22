@@ -164,8 +164,8 @@ export default function AboutTestimonials() {
 
 function TestimonialLink() {
   return (
-    <Link href="https://www.google.com" variant="subtitle2" sx={{ display: 'flex', alignItems: 'center' }}>
-      Read more testimonials
+    <Link href="/" variant="subtitle2" sx={{ display: 'flex', alignItems: 'center' }}>
+      Find out the hype
       <Iconify icon={'ic:round-arrow-right-alt'} sx={{ ml: 1, width: 20, height: 20 }} />
     </Link>
   );
