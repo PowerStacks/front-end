@@ -62,12 +62,12 @@ import MotionLazyContainer from '../components/animate/MotionLazyContainer';
 // Check our docs
 // https://docs-minimals.vercel.app/authentication/ts-version
 
-import { AuthProvider } from '../contexts/JWTContext';
+// import { AuthProvider } from '../contexts/JWTContext';
 import { NextComponentType, NextPageContext } from 'next';
 import { AppTreeType } from 'next/dist/shared/lib/utils';
 import { Router } from 'next/router';
 // import { AuthProvider } from '../contexts/Auth0Context';
-// import { AuthProvider } from '../contexts/FirebaseContext';
+import { AuthProvider } from '../contexts/FirebaseContext';
 // import { AuthProvider } from '../contexts/AwsCognitoContext';
 
 // ----------------------------------------------------------------------
