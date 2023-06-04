@@ -49,7 +49,7 @@ const handlers = {
 
 const reducer = (state, action) => (handlers[action.type] ? handlers[action.type](state, action) : state);
 
-const AuthContext = createContext({
+const AuthJWTContext = createContext({
   ...initialState,
   method: 'jwt',
   login: () => Promise.resolve(),
@@ -112,6 +112,7 @@ function AuthProvider({ children }) {
     const response = await axios.post('/api/account/login', {
       email,
       password,
+
     });
     const { accessToken, user } = response.data;
 console.log(accessToken, user, axios.post, axios);
@@ -124,12 +125,20 @@ console.log(accessToken, user, axios.post, axios);
     });
   };
 
-  const register = async (email, password, 
+  const register = async (
+    email,
+    password,
+    display_name,
+    is_merchant,
+    is_admin
     // firstName, lastName
-    ) => {
-    const response = await axios.post('/api/account/register', {
+  ) => {
+    const response = await axios.post('/user/CreateUser', {
       email,
       password,
+      display_name,
+      is_merchant,
+      is_admin,
       // firstName,
       // lastName,
     });
@@ -150,7 +159,7 @@ console.log(accessToken, user, axios.post, axios);
   };
 
   return (
-    <AuthContext.Provider
+    <AuthJWTContext.Provider
       value={{
         ...state,
         method: 'jwt',
@@ -160,8 +169,8 @@ console.log(accessToken, user, axios.post, axios);
       }}
     >
       {children}
-    </AuthContext.Provider>
+    </AuthJWTContext.Provider>
   );
 }
 
-export { AuthContext, AuthProvider };
+export { AuthJWTContext, AuthProvider };

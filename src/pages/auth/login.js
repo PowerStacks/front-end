@@ -3,7 +3,9 @@ import { capitalCase } from 'change-case';
 import NextLink from 'next/link';
 // @mui
 import { styled } from '@mui/material/styles';
-import { Box, Stack, Link, Alert, Tooltip, Container, Typography } from '@mui/material';
+import { Box, Stack, Link, 
+  // Alert, 
+  Tooltip, Container, Typography } from '@mui/material';
 // routes
 import { PATH_AUTH } from '../../routes/paths';
 // hooks
@@ -123,9 +125,9 @@ export default function Login() {
                 </Tooltip>
               </Stack>
 
-              <Alert severity="info" sx={{ mb: 3 }}>
+              {/* <Alert severity="info" sx={{ mb: 3 }}>
                 Use email : <strong>demo@minimals.cc</strong> / password :<strong> demo1234</strong>
-              </Alert>
+              </Alert> */}
 
               <LoginForm />
 

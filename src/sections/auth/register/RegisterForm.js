@@ -7,16 +7,17 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Stack, IconButton, InputAdornment, Alert } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // hooks
-import useAuth from '../../../hooks/useAuth';
+import {useJWTAuth} from '../../../hooks/useAuth';
 import useIsMountedRef from '../../../hooks/useIsMountedRef';
 // components
 import Iconify from '../../../components/Iconify';
 import { FormProvider, RHFTextField } from '../../../components/hook-form';
+// import axios from 'axios';
 
 // ----------------------------------------------------------------------
 
 export default function RegisterForm() {
-  const { register } = useAuth();
+  const { register } = useJWTAuth();
 
   const isMountedRef = useIsMountedRef();
 
@@ -43,16 +44,49 @@ export default function RegisterForm() {
 
   const {
     reset,
-
     setError,
     handleSubmit,
     formState: { errors, isSubmitting },
   } = methods;
 
   const onSubmit = async (data) => {
+    // console.log({ data });
+    // reset();
+    // try {
+    //   console.log( {email: data.email,
+    //       password: data.password,
+    //       display_name: `${data.firstName} ${data.lastName}`,
+    //       is_merchant: true,
+    //       is_admin: false,})
+    //   const res = await axios.post(
+    //     'http://104.236.193.32:8000/user/CreateUser',
+    //     {
+    //       email: data.email,
+    //       password: data.password,
+    //       display_name: `${data.firstName} ${data.lastName}`,
+    //       is_merchant: true,
+    //       is_admin: false,
+    //     },
+    //     {
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //       },
+    //     }
+    //   );
+    //   console.log(res);
+    // } catch (error) {
+    //   console.error(error);
+    //   reset();
+    //   if (isMountedRef.current) {
+    //     setError('afterSubmit', { ...error, message: error.message });
+    //   }
+    // }
     try {
-      await register(data.email, data.password, 
-        data.firstName, data.lastName
+      await register({email: data.email,
+          password: data.password,
+          display_name: `${data.firstName} ${data.lastName}`,
+          is_merchant: true,
+          is_admin: false,}
         );
     } catch (error) {
       console.error(error);
@@ -69,15 +103,36 @@ export default function RegisterForm() {
         {!!errors.afterSubmit && <Alert severity="error">{errors.afterSubmit.message}</Alert>}
 
         <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
-          <RHFTextField name="firstName" label="First name" />
-          <RHFTextField name="lastName" label="Last name" />
+          <RHFTextField
+            // onChange={(e) => setFirstName(e.target.value)}
+            name="firstName"
+            // type="text"
+            // value={firstName}
+            label="First name"
+          />
+          <RHFTextField
+            name="lastName"
+            // onChange={(e) => setLastName(e.target.value)}
+            type="text"
+            // placeholder="Last name"
+            // value={lastName}
+            label="Last name"
+          />
         </Stack>
 
-        <RHFTextField name="email" label="Email address" />
+        <RHFTextField
+          name="email"
+          // onChange={(e) => setEmail(e.target.value)}
+          // type="email"
+          // value={email}
+          label="Email Address"
+        />
 
         <RHFTextField
           name="password"
           label="Password"
+          // onChange={(e) => setPassword(e.target.value)}
+          // value={password}
           type={showPassword ? 'text' : 'password'}
           InputProps={{
             endAdornment: (

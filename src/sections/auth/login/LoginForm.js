@@ -11,11 +11,12 @@ import { LoadingButton } from '@mui/lab';
 // routes
 import { PATH_AUTH } from '../../../routes/paths';
 // hooks
-import useAuth from '../../../hooks/useAuth';
+import {useAuth} from '../../../hooks/useAuth';
 import useIsMountedRef from '../../../hooks/useIsMountedRef';
 // components
 import Iconify from '../../../components/Iconify';
 import { FormProvider, RHFTextField, RHFCheckbox } from '../../../components/hook-form';
+// import axios from 'axios';
 
 // ----------------------------------------------------------------------
 
@@ -32,8 +33,8 @@ export default function LoginForm() {
   });
 
   const defaultValues = {
-    email: 'demo@minimals.cc',
-    password: 'demo1234',
+    email: '',
+    password: '',
     remember: true,
   };
 
@@ -50,6 +51,32 @@ export default function LoginForm() {
   } = methods;
 
   const onSubmit = async (data) => {
+    // try {
+    //   console.log({
+    //     email: data.email,
+    //     password: data.password,
+    //   });
+    //   const res = await axios.post(
+    //     'http://104.236.193.32:8000/user/Login',
+    //     {
+    //       email: data.email,
+    //       password: data.password,
+          
+    //     },
+    //     {
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //       },
+    //     }
+    //   );
+    //   console.log(res);
+    // } catch (error) {
+    //   console.error(error);
+    //   reset();
+    //   if (isMountedRef.current) {
+    //     setError('afterSubmit', { ...error, message: error.message });
+    //   }
+    // }
     try {
       await login(data.email, data.password);
     } catch (error) {

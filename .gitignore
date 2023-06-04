@@ -90,3 +90,8 @@ bower_components
 psd
 thumb
 sketch
+.env
+/.env
+
+next.config.js
+/next.config.js
