@@ -7,7 +7,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Stack, IconButton, InputAdornment, Alert } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // hooks
-import {useJWTAuth} from '../../../hooks/useAuth';
+import {useAuth} from '../../../hooks/useAuth';
 import useIsMountedRef from '../../../hooks/useIsMountedRef';
 // components
 import Iconify from '../../../components/Iconify';
@@ -17,7 +17,7 @@ import { FormProvider, RHFTextField } from '../../../components/hook-form';
 // ----------------------------------------------------------------------
 
 export default function RegisterForm() {
-  const { register } = useJWTAuth();
+  const { register } = useAuth();
 
   const isMountedRef = useIsMountedRef();
 
@@ -43,7 +43,7 @@ export default function RegisterForm() {
   });
 
   const {
-    reset,
+    // reset,
     setError,
     handleSubmit,
     formState: { errors, isSubmitting },
@@ -84,15 +84,28 @@ export default function RegisterForm() {
     try {
       await register({email: data.email,
           password: data.password,
+          // returnSecureToken: true
           display_name: `${data.firstName} ${data.lastName}`,
-          is_merchant: true,
-          is_admin: false,}
+          is_merchant: false,
+          is_admin: false,
+        }
         );
+         console.log({
+           email: data.email,
+           password: data.password,
+           display_name: `${data.firstName} ${data.lastName}`,
+           is_merchant: true,
+           is_admin: false,
+         });
     } catch (error) {
-      console.error(error);
-      reset();
+      
+      // console.error(error);
+      console.log(error);
+      // reset();
       if (isMountedRef.current) {
-        setError('afterSubmit', { ...error, message: error.message });
+        setError('afterSubmit', { ...error, message: error.error });
+        console.log(setError);
+        console.log(error.message);
       }
     }
   };

@@ -1,5 +1,5 @@
 // hooks
-import useAuth from '../hooks/useAuth';
+import {useAuth} from '../hooks/useAuth';
 // utils
 import createAvatar from '../utils/createAvatar';
 //
@@ -14,11 +14,11 @@ export default function MyAvatar({ ...other }) {
     <Avatar
       src="https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png"
       // src={user?.photoURL}
-      alt={user?.displayName}
-      color={user?.photoURL ? 'default' : createAvatar(user?.displayName).color}
+      alt={user?.display_name}
+      color={user?.photoURL ? 'default' : createAvatar(user?.display_name).color}
       {...other}
     >
-      {createAvatar(user?.displayName).name}
+      {createAvatar(user?.display_name).name}
     </Avatar>
   );
 }

@@ -3,7 +3,7 @@ import { capitalCase } from 'change-case';
 // @mui
 import { Box, List, Stack, Select, Divider, Tooltip, MenuItem, Typography, IconButton } from '@mui/material';
 // hooks
-import useAuth from '../../../hooks/useAuth';
+import {useAuth} from '../../../hooks/useAuth';
 // components
 import Iconify from '../../../components/Iconify';
 import MyAvatar from '../../../components/MyAvatar';
@@ -54,7 +54,7 @@ export default function ChatAccount() {
         <Stack direction="row" alignItems="center" spacing={2} sx={{ py: 2, pr: 1, pl: 2.5 }}>
           <div>
             <Typography noWrap variant="subtitle1">
-              {user?.displayName}
+              {user?.display_name}
             </Typography>
             <Typography noWrap variant="body2" sx={{ color: 'text.secondary' }}>
               {user?.email}

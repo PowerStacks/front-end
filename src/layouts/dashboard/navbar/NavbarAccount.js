@@ -5,7 +5,7 @@ import NextLink from 'next/link';
 import { styled } from '@mui/material/styles';
 import { Box, Link, Typography } from '@mui/material';
 // hooks
-import useAuth from '../../../hooks/useAuth';
+import {useAuth} from '../../../hooks/useAuth';
 // routes
 import { PATH_DASHBOARD } from '../../../routes/paths';
 // components
@@ -59,7 +59,7 @@ export default function NavbarAccount({ isCollapse }) {
             }}
           >
             <Typography variant="subtitle2" noWrap>
-              {user?.displayName}
+              {user?.display_name}
             </Typography>
             {/* <Typography variant="body2" noWrap sx={{ color: 'text.secondary' }}>
               {user?.role}

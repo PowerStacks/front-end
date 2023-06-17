@@ -203,7 +203,7 @@
 //         ...state,
 //         method: 'cognito',
 //         user: {
-//           displayName: state?.user?.name || 'Minimals',
+//           display_name: state?.user?.name || 'Minimals',
 //           role: 'admin',
 //           ...state.user,
 //         },

@@ -32,10 +32,14 @@ export const _appAuthors = [...Array(3)].map((_, index) => ({
 }));
 
 export const _appInvoices = [...Array(5)].map((_, index) => ({
-  id: `${Date.now() + index}`,
-  price: _mock.number.price(index),
-  category: randomInArray(['Android', 'Mac', 'Windows']),
-  status: randomInArray(['paid', 'out_of_date', 'in_progress']),
+  // id: `${Date.now() + index}`,
+  // price: _mock.number.price(index),
+  // category: randomInArray(['Android', 'Mac', 'Windows']),
+  // status: randomInArray(['paid', 'out_of_date', 'in_progress']),
+  purchase_id: `${Date.now() + index}`,
+  amount: _mock.number.price(index),
+  meter_number: randomInArray(['111222333', '444555666', '777888999']),
+  date: randomInArray(['11/11', '05/14', '10/19']),
 }));
 
 export const _appFeatured = [...Array(3)].map((_, index) => ({

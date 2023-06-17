@@ -142,9 +142,13 @@ console.log(accessToken, user, axios.post, axios);
       // firstName,
       // lastName,
     });
-    const { accessToken, user } = response.data;
+    const { user } = response;
+    console.log(response);
 
-    window.localStorage.setItem('accessToken', accessToken);
+    
+
+
+    // window.localStorage.setItem('accessToken', accessToken);
     dispatch({
       type: 'REGISTER',
       payload: {

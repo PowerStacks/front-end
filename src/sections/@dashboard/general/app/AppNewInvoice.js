@@ -26,50 +26,77 @@ import Label from '../../../../components/Label';
 import Iconify from '../../../../components/Iconify';
 import Scrollbar from '../../../../components/Scrollbar';
 import MenuPopover from '../../../../components/MenuPopover';
+import PropTypes from 'prop-types';
 
 // ----------------------------------------------------------------------
+AppNewInvoice.propTypes = {
+  data: PropTypes.object,
+};
 
-export default function AppNewInvoice() {
+export default function AppNewInvoice({data}) {
   const theme = useTheme();
 
   return (
     <Card>
-      <CardHeader title="New Invoice" sx={{ mb: 3 }} />
+      <CardHeader title="Purchase History" sx={{ mb: 3 }} />
       <Scrollbar>
         <TableContainer sx={{ minWidth: 720 }}>
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>Invoice ID</TableCell>
-                <TableCell>Category</TableCell>
-                <TableCell>Price</TableCell>
-                <TableCell>Status</TableCell>
+                <TableCell>Meter Number</TableCell>
+                <TableCell>Date</TableCell>
+                <TableCell>Amount</TableCell>
+                <TableCell>ID</TableCell>
                 <TableCell />
               </TableRow>
             </TableHead>
             <TableBody>
-              {_appInvoices.map((row) => (
-                <TableRow key={row.id}>
-                  <TableCell>{`INV-${row.id}`}</TableCell>
-                  <TableCell>{row.category}</TableCell>
-                  <TableCell>{fCurrency(row.price)}</TableCell>
-                  <TableCell>
-                    <Label
-                      variant={theme.palette.mode === 'light' ? 'ghost' : 'filled'}
-                      color={
-                        (row.status === 'in_progress' && 'warning') ||
-                        (row.status === 'out_of_date' && 'error') ||
-                        'success'
-                      }
-                    >
-                      {sentenceCase(row.status)}
-                    </Label>
-                  </TableCell>
-                  <TableCell align="right">
-                    <MoreMenuButton />
-                  </TableCell>
-                </TableRow>
-              ))}
+              {data?.purchases?.length > 0
+                ? data?.purchases?.map((row) => (
+                    <TableRow key={row.purchase_id}>
+                      <TableCell>{row.meter_number}</TableCell>
+                      <TableCell>{row.date}</TableCell>
+                      <TableCell>{fCurrency(row.amount)}</TableCell>
+                      <TableCell>
+                        <Label
+                          variant={theme.palette.mode === 'light' ? 'ghost' : 'filled'}
+                          color={
+                            (row.status === 'in_progress' && 'warning') ||
+                            (row.status === 'out_of_date' && 'error') ||
+                            'success'
+                          }
+                        >
+                          {sentenceCase(row.purchase_id)}
+                        </Label>
+                      </TableCell>
+                      <TableCell align="right">
+                        <MoreMenuButton />
+                      </TableCell>
+                    </TableRow>
+                  ))
+                : _appInvoices.map((row) => (
+                    <TableRow key={row.purchase_id}>
+                      <TableCell>{row.meter_number}</TableCell>
+                      <TableCell>{row.date}</TableCell>
+                      <TableCell>{fCurrency(row.amount)}</TableCell>
+                      <TableCell>
+                        <Label
+                          variant={theme.palette.mode === 'light' ? 'ghost' : 'filled'}
+                          color={
+                            (row.status === 'in_progress' && 'warning') ||
+                            (row.status === 'out_of_date' && 'error') ||
+                            'success'
+                          }
+                        >
+                          {sentenceCase(row.purchase_id)}
+                        </Label>
+                      </TableCell>
+                      <TableCell align="right">
+                        <MoreMenuButton />
+                      </TableCell>
+                    </TableRow>
+                  ))}
             </TableBody>
           </Table>
         </TableContainer>

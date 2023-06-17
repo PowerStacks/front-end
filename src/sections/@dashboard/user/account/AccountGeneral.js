@@ -8,7 +8,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Box, Grid, Card, Stack, Typography } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // hooks
-import useAuth from '../../../../hooks/useAuth';
+import {useAuth} from '../../../../hooks/useAuth';
 // utils
 import { fData } from '../../../../utils/formatNumber';
 // _mock
@@ -24,11 +24,11 @@ export default function AccountGeneral() {
   const { user } = useAuth();
 
   const UpdateUserSchema = Yup.object().shape({
-    displayName: Yup.string().required('Name is required'),
+    display_name: Yup.string().required('Name is required'),
   });
 
   const defaultValues = {
-    displayName: user?.displayName || '',
+    display_name: user?.display_name || '',
     email: user?.email || '',
     photoURL: "https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png",
     // photoURL: user?.photoURL || '',
@@ -119,7 +119,7 @@ export default function AccountGeneral() {
                 gridTemplateColumns: { xs: 'repeat(1, 1fr)', sm: 'repeat(2, 1fr)' },
               }}
             >
-              <RHFTextField name="displayName" label="Name" />
+              <RHFTextField name="display_name" label="Name" />
               <RHFTextField name="email" label="Email Address" />
 
               <RHFTextField name="phoneNumber" label="Phone Number" />

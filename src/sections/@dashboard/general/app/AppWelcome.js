@@ -13,12 +13,14 @@ import NextLink from 'next/link';
 const RootStyle = styled(Card)(({ theme }) => ({
   boxShadow: 'none',
   textAlign: 'center',
+  width: '100%',
   backgroundColor: theme.palette.primary.lighter,
   [theme.breakpoints.up('md')]: {
     height: '100%',
     display: 'flex',
     textAlign: 'left',
     alignItems: 'center',
+    width: '100%',
     justifyContent: 'space-between',
   },
 }));
@@ -26,10 +28,10 @@ const RootStyle = styled(Card)(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 AppWelcome.propTypes = {
-  displayName: PropTypes.string,
+  display_name: PropTypes.string,
 };
 
-export default function AppWelcome({ displayName }) {
+export default function AppWelcome({ display_name }) {
   return (
     <RootStyle>
       <CardContent
@@ -41,8 +43,8 @@ export default function AppWelcome({ displayName }) {
         }}
       >
         <Typography gutterBottom variant="h4">
-          Welcome back,
-          <br /> {!displayName ? '...' : displayName}!
+          Welcome,
+          <br /> {!display_name ? '...' : display_name}
         </Typography>
 
         <Typography variant="body2" sx={{ pb: { xs: 3, xl: 5 }, maxWidth: 480, mx: 'auto' }}>

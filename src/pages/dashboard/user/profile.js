@@ -6,7 +6,7 @@ import { Tab, Box, Card, Tabs, Container } from '@mui/material';
 // routes
 import { PATH_DASHBOARD } from '../../../routes/paths';
 // hooks
-import useAuth from '../../../hooks/useAuth';
+import {useAuth} from '../../../hooks/useAuth';
 import useTabs from '../../../hooks/useTabs';
 import useSettings from '../../../hooks/useSettings';
 // _mock_
@@ -96,7 +96,7 @@ export default function UserProfile() {
           links={[
             { name: 'Dashboard', href: PATH_DASHBOARD.root },
             { name: 'User', href: PATH_DASHBOARD.user.root },
-            { name: user?.displayName || '' },
+            { name: user?.display_name || '' },
           ]}
         />
         <Card

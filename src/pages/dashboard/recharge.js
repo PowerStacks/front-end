@@ -7,7 +7,7 @@ import { Box, Stack, Link, Alert, Tooltip, Container, Typography } from '@mui/ma
 // routes
 import { PATH_AUTH } from '../../routes/paths';
 // hooks
-import useAuth from '../../hooks/useAuth';
+import {useAuth} from '../../hooks/useAuth';
 import useResponsive from '../../hooks/useResponsive';
 // guards
 // import GuestGuard from '../../guards/GuestGuard';
@@ -72,7 +72,7 @@ export default function Login() {
 
   return (
     // <GuestGuard>
-      <Page title="Login">
+      <Page title="Recharge">
         <RootStyle>
           <HeaderStyle>
             <Logo />
@@ -124,7 +124,7 @@ export default function Login() {
               </Stack>
 
               <Alert severity="info" sx={{ mb: 3 }}>
-                Always remember: <strong>Do not</strong> show anyone :<strong> your password</strong>
+                Always remember: <strong>Do not</strong> show anyone :<strong> your meter number</strong>
               </Alert>
 
               <RechargeForm />

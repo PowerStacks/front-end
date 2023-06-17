@@ -5,7 +5,7 @@ import NextLink from 'next/link';
 import { styled } from '@mui/material/styles';
 import { Box,  Link, Container, Typography, Tooltip } from '@mui/material';
 // hooks
-import useAuth from '../../hooks/useAuth';
+import {useAuth} from '../../hooks/useAuth';
 import useResponsive from '../../hooks/useResponsive';
 // routes
 import { PATH_AUTH } from '../../routes/paths';

@@ -7,7 +7,7 @@ import { Box, Stack, Link, Alert, Tooltip, Container, Typography } from '@mui/ma
 // routes
 import { PATH_AUTH } from '../../routes/paths';
 // hooks
-import useAuth from '../../hooks/useAuth';
+import {useAuth} from '../../hooks/useAuth';
 import useResponsive from '../../hooks/useResponsive';
 // components
 import Page from '../../components/Page';

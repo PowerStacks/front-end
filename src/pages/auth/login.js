@@ -9,7 +9,7 @@ import { Box, Stack, Link,
 // routes
 import { PATH_AUTH } from '../../routes/paths';
 // hooks
-import useAuth from '../../hooks/useAuth';
+import {useAuth} from '../../hooks/useAuth';
 import useResponsive from '../../hooks/useResponsive';
 // guards
 import GuestGuard from '../../guards/GuestGuard';

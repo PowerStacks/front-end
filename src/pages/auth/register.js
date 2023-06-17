@@ -5,7 +5,7 @@ import NextLink from 'next/link';
 import { styled } from '@mui/material/styles';
 import { Box, Link, Container, Typography, Tooltip } from '@mui/material';
 // hooks
-import useAuth from '../../hooks/useAuth';
+import {useAuth} from '../../hooks/useAuth';
 import useResponsive from '../../hooks/useResponsive';
 // routes
 import { PATH_AUTH } from '../../routes/paths';
@@ -89,7 +89,7 @@ export default function Register() {
           {/* {mdUp && (
             <SectionStyle>
               <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
-                Manage the job more effectively with Minimal
+                Manage the job more effectively with PowerStack
               </Typography>
               <Image
                 visibleByDefault
@@ -107,7 +107,7 @@ export default function Register() {
                   <Typography variant="h4" gutterBottom>
                     Get started absolutely free.
                   </Typography>
-                  <Typography sx={{ color: 'text.secondary' }}>Free forever. No credit card needed.</Typography>
+                  <Typography sx={{ color: 'text.secondary' }}>A better way to manage your electricity.</Typography>
                 </Box>
                 <Tooltip title={capitalCase(method)}>
                   <>
@@ -124,7 +124,7 @@ export default function Register() {
               <RegisterForm />
 
               <Typography variant="body2" align="center" sx={{ color: 'text.secondary', mt: 3 }}>
-                By registering, I agree to Minimal&nbsp;
+                By registering, I agree to PowerStack&nbsp;
                 <Link underline="always" color="text.primary" href="#">
                   Terms of Service
                 </Link>

@@ -28,7 +28,7 @@ const AvatarWrapperStyle = styled('div')(() => ({
 
 const getDetails = (conversation, currentUserId) => {
   const otherParticipants = conversation.participants.filter((participant) => participant.id !== currentUserId);
-  const displayNames = otherParticipants.map((participant) => participant.name).join(', ');
+  const display_names = otherParticipants.map((participant) => participant.name).join(', ');
 
   let displayText = '';
   const lastMessage = conversation.messages[conversation.messages.length - 1];
@@ -37,7 +37,7 @@ const getDetails = (conversation, currentUserId) => {
     const message = lastMessage.contentType === 'image' ? 'Sent a photo' : lastMessage.body;
     displayText = `${sender}${message}`;
   }
-  return { otherParticipants, displayNames, displayText };
+  return { otherParticipants, display_names, displayText };
 };
 
 ChatConversationItem.propTypes = {
@@ -103,7 +103,7 @@ export default function ChatConversationItem({ isSelected, conversation, onSelec
       {isOpenSidebar && (
         <>
           <ListItemText
-            primary={details.displayNames}
+            primary={details.display_names}
             primaryTypographyProps={{
               noWrap: true,
               variant: 'subtitle2',

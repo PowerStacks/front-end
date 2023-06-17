@@ -18,7 +18,7 @@ import {
   FormControlLabel,
 } from '@mui/material';
 // hooks
-import useAuth from '../../../../hooks/useAuth';
+import {useAuth} from '../../../../hooks/useAuth';
 // utils
 import { fDate } from '../../../../utils/formatTime';
 import { fShortenNumber } from '../../../../utils/formatNumber';
@@ -78,7 +78,7 @@ export default function ProfilePostCard({ post }) {
         avatar={<MyAvatar />}
         title={
           <Link variant="subtitle2" color="text.primary">
-            {user?.displayName}
+            {user?.display_name}
           </Link>
         }
         subheader={

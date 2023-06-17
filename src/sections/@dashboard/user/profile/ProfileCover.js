@@ -5,7 +5,7 @@ import { Box, Typography } from '@mui/material';
 // utils
 import cssStyles from '../../../../utils/cssStyles';
 // hooks
-import useAuth from '../../../../hooks/useAuth';
+import {useAuth} from '../../../../hooks/useAuth';
 // components
 import MyAvatar from '../../../../components/MyAvatar';
 import Image from '../../../../components/Image';
@@ -71,7 +71,7 @@ export default function ProfileCover({ myProfile }) {
             textAlign: { xs: 'center', md: 'left' },
           }}
         >
-          <Typography variant="h4">{user?.displayName}</Typography>
+          <Typography variant="h4">{user?.display_name}</Typography>
           <Typography sx={{ opacity: 0.72 }}>{position}</Typography>
         </Box>
       </InfoStyle>
