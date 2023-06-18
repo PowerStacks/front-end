@@ -32,13 +32,13 @@ export default class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap"
             rel="stylesheet"
           />
-
+          <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
           <meta
             name="description"
             content="Trust Powerstack for all your Power Needs. Electrifying the Nation."
           />
           <meta name="keywords" content="react,material,kit,application,dashboard,admin,template" />
-          <meta name="author" content="Minimal UI Kit" />
+          <meta name="author" content="Powerstack UI Kit" />
         </Head>
 
         <body>

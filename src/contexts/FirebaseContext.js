@@ -22,7 +22,7 @@ import { FIREBASE_API } from '../config';
 // import { isValidToken, setSession } from '../utils/jwt';
 // ----------------------------------------------------------------------
 
-const ADMIN_EMAILS = ['demo@minimals.cc'];
+// const ADMIN_EMAILS = ['demo@minimals.cc'];
 
 const firebaseApp = initializeApp(FIREBASE_API);
 
@@ -177,7 +177,21 @@ function AuthProvider({ children }) {
   //   initialize();
   // }, []);
 
-  const login = (email, password) => signInWithEmailAndPassword(AUTH, email, password);
+  const login = async (email, password) => { const {user} = signInWithEmailAndPassword(AUTH, email, password)
+  
+  console.log(user)
+
+  dispatch({
+    type: 'LOGIN',
+    payload: {
+      user,
+    },
+  });
+
+  console.log(initialState);
+  console.log(state);
+
+};
 
   const register = async (
     email,
@@ -243,16 +257,16 @@ function AuthProvider({ children }) {
         ...state,
         method: 'jwt',
         user: {
-          id: state?.user?.[0].uid,
-          email: state?.user?.[0].email,
+          id: state?.user?.[0].uid || null,
+          email: state?.user?.[0].email || state?.user?.email,
           // role: ADMIN_EMAILS.includes(state?.user?.email) ? 'admin' : 'user',
-          display_name: state?.user?.[0].display_name,
+          display_name: state?.user?.[0].display_name || state?.user?.displayName,
           // || profile?.display_name,
-          is_active: state?.user?.[0].is_active,
-          is_admin: state?.user?.[0].is_admin,
+          is_active: state?.user?.[0].is_active || state?.user?.is_active,
+          is_admin: state?.user?.[0].is_admin || state?.user?.is_admin,
           // ? (ADMIN_EMAILS.includes(state?.user?.email) ? true : false) : false,
-          is_merchant: state?.user?.[0].is_merchant,
-          is_owner: state?.user?.[0].is_owner,
+          is_merchant: state?.user?.[0].is_merchant || state?.user?.is_merchant,
+          is_owner: state?.user?.[0].is_owner || state?.user?.is_owner,
           // photoURL: state?.user?.photoURL || profile?.photoURL,
           // display_name: state?.user?.display_name || profile?.display_name,
           // phoneNumber: state?.user?.phoneNumber || profile?.phoneNumber || '',

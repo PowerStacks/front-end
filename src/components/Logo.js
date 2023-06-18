@@ -9,7 +9,7 @@ import PowerLogo from '../../public/images/logo-color-full.svg';
 import PowerLogoNoText from '../../public/images/logo-color.svg';
 
 // ----------------------------------------------------------------------
-
+// new logo theme = #217d50
 const Logo = forwardRef(({ disabledLink = false, noText=false, width=175, sx }, ref) => {
   // const theme = useTheme();
   // const PRIMARY_LIGHT = theme.palette.primary.light;

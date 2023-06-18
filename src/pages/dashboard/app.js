@@ -42,6 +42,7 @@ GeneralApp.getLayout = function getLayout(page) {
 
 export default function GeneralApp() {
   let { user } = useAuth();
+  console.log(user)
 
   // const { JWTuser } = useJWTAuth();
 
@@ -54,6 +55,7 @@ const { currentUser } = auth
 // const token = await getIdToken(currentUser, true)
 
   useEffect(() => {
+    console.log(user)
     async function fetchData() {
       // const res = await axios.get('http://my-api.com/data');
       // const data = await res.data;

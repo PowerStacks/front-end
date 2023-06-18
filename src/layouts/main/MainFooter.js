@@ -15,7 +15,7 @@ const year = new Date().getFullYear();
 
 // const LINKS = [
 //   {
-//     headline: 'Minimal',
+//     headline: 'Powerstack',
 //     children: [
 //       { name: 'About us', href: PATH_PAGE.about },
 //       { name: 'Contact us', href: PATH_PAGE.contact },
@@ -74,7 +74,7 @@ export default function MainFooter() {
           </Grid>
           {/* <Grid item xs={8} md={3}>
             <Typography variant="body2" sx={{ pr: { md: 5 } }}>
-              The starting point for your next project with Minimal UI Kit, built on the newest version of Material-UI
+              The starting point for your next project with Powerstack UI Kit, built on the newest version of Material-UI
               ©, ready to be customized to your style.
             </Typography>
 
