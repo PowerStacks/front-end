@@ -32,7 +32,7 @@ export default class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap"
             rel="stylesheet"
           />
-          <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+          <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests" />
           <meta
             name="description"
             content="Trust Powerstack for all your Power Needs. Electrifying the Nation."

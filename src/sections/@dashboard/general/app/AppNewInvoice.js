@@ -16,6 +16,7 @@ import {
   CardHeader,
   IconButton,
   TableContainer,
+  Typography,
 } from '@mui/material';
 // utils
 import { fCurrency } from '../../../../utils/formatNumber';
@@ -71,32 +72,33 @@ export default function AppNewInvoice({data}) {
                         </Label>
                       </TableCell>
                       <TableCell align="right">
-                        <MoreMenuButton />
+                        {/* <MoreMenuButton /> */}
                       </TableCell>
                     </TableRow>
-                  ))
-                : _appInvoices.map((row) => (
-                    <TableRow key={row.purchase_id}>
-                      <TableCell>{row.meter_number}</TableCell>
-                      <TableCell>{row.date}</TableCell>
-                      <TableCell>{fCurrency(row.amount)}</TableCell>
-                      <TableCell>
-                        <Label
-                          variant={theme.palette.mode === 'light' ? 'ghost' : 'filled'}
-                          color={
-                            (row.status === 'in_progress' && 'warning') ||
-                            (row.status === 'out_of_date' && 'error') ||
-                            'success'
-                          }
-                        >
-                          {sentenceCase(row.purchase_id)}
-                        </Label>
-                      </TableCell>
-                      <TableCell align="right">
-                        <MoreMenuButton />
-                      </TableCell>
-                    </TableRow>
-                  ))}
+                  )) : <br/>
+                // : _appInvoices.map((row) => (
+                //     <TableRow key={row.purchase_id}>
+                //       <TableCell>{row.meter_number}</TableCell>
+                //       <TableCell>{row.date}</TableCell>
+                //       <TableCell>{fCurrency(row.amount)}</TableCell>
+                //       <TableCell>
+                //         <Label
+                //           variant={theme.palette.mode === 'light' ? 'ghost' : 'filled'}
+                //           color={
+                //             (row.status === 'in_progress' && 'warning') ||
+                //             (row.status === 'out_of_date' && 'error') ||
+                //             'success'
+                //           }
+                //         >
+                //           {sentenceCase(row.purchase_id)}
+                //         </Label>
+                //       </TableCell>
+                //       <TableCell align="right">
+                //         <MoreMenuButton />
+                //       </TableCell>
+                //     </TableRow>
+                //   ))
+              }
             </TableBody>
           </Table>
         </TableContainer>

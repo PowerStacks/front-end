@@ -5,18 +5,18 @@ import NextLink from 'next/link';
 import { styled } from '@mui/material/styles';
 import { Box, Link, Container, Typography, Tooltip } from '@mui/material';
 // hooks
-import {useAuth} from '../../hooks/useAuth';
-import useResponsive from '../../hooks/useResponsive';
+import { useAuth } from '../../../hooks/useAuth';
+import useResponsive from '../../../hooks/useResponsive';
 // routes
-import { PATH_AUTH } from '../../routes/paths';
+import { PATH_AUTH } from '../../../routes/paths';
 // guards
-import GuestGuard from '../../guards/GuestGuard';
+import GuestGuard from '../../../guards/GuestGuard';
 // components
-import Page from '../../components/Page';
-// import Logo from '../../components/Logo';
-import Image from '../../components/Image';
+import Page from '../../../components/Page';
+// import Logo from '../../../components/Logo';
+import Image from '../../../components/Image';
 // sections
-import { RegisterForm } from '../../sections/auth/register';
+import { RegisterForm } from '../../../sections/auth/register';
 
 // ----------------------------------------------------------------------
 
@@ -136,8 +136,8 @@ export default function Register() {
               </Typography>
               <br />
               <Typography variant="body2" sx={{ mt: 3, textAlign: 'center' }}>
-                Interested in becoming our merchant?{' '}
-                <NextLink href="/auth/merchant/register" passHref>
+                Want to buy electricity?{' '}
+                <NextLink href="/auth/register" passHref>
                   <Link variant="subtitle2">Get started</Link>
                 </NextLink>
               </Typography>

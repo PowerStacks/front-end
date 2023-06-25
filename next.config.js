@@ -19,6 +19,7 @@ module.exports = withTM({
   env: {
     // HOST_API_KEY: 'https://minimal-assets-api.vercel.app',
     HOST_API_KEY: 'https://powerstackserver.co/',
+    // HOST_API_KEY: 'http://104.236.193.32:8000',
 
     // HOST_API_KEY: 'https://www.googleapis.com/',
 

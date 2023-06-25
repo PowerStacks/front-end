@@ -75,11 +75,11 @@ export default function Login() {
       <Page title="Recharge">
         <RootStyle>
           <HeaderStyle>
-            <Logo />
+            {/* <Logo /> */}
             {smUp && (
               <Typography variant="body2" sx={{ mt: { md: -2 } }}>
-                Don’t have a meter? {''}
-                <NextLink href={PATH_AUTH.register} passHref>
+                Want to become one of our merchants? {''}
+                <NextLink href='/auth/merchant/register' passHref>
                   <Link variant="subtitle2">Get started</Link>
                 </NextLink>
               </Typography>

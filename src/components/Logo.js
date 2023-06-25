@@ -10,7 +10,10 @@ import PowerLogoNoText from '../../public/images/logo-color.svg';
 
 // ----------------------------------------------------------------------
 // new logo theme = #217d50
-const Logo = forwardRef(({ disabledLink = false, noText=false, width=175, sx }, ref) => {
+const Logo = forwardRef(({ disabledLink = false, noText=false,
+   width = 150 ,
+   height ,
+  sx }, ref) => {
   // const theme = useTheme();
   // const PRIMARY_LIGHT = theme.palette.primary.light;
   // const PRIMARY_MAIN = theme.palette.primary.main;
@@ -19,13 +22,12 @@ const Logo = forwardRef(({ disabledLink = false, noText=false, width=175, sx }, 
   const logo = (
     <Box ref={ref} sx={{ display: 'grid',
     justifyContent: 'center', cursor: 'pointer', ...sx }}>
-      <Image sx={{margin:'auto'}} priority src={PowerLogo}  width={width} alt="Home Logo" />
+      <Image sx={{margin:'auto'}} priority src={PowerLogo}  width={width} height={height} alt="Home Logo" />
     </Box>
   );
 const logoNoText = (
-  <Box ref={ref} sx={{ display: 'grid',
-    justifyContent: 'center', cursor: 'pointer', ...sx }}>
-    <Image sx={{ margin: '0 auto' }} priority src={PowerLogoNoText} width={width} alt="Home Logo" />
+  <Box ref={ref} sx={{ display: 'grid', justifyContent: 'center', cursor: 'pointer', ...sx }}>
+    <Image sx={{ margin: '0 auto' }} priority src={PowerLogoNoText} width={width} height={height} alt="Home Logo" />
   </Box>
 );
 
@@ -49,6 +51,7 @@ Logo.propTypes = {
   sx: PropTypes.object,
   noText: PropTypes.bool,
   width: PropTypes.number,
+  height: PropTypes.number,
 };
 
 export default Logo;

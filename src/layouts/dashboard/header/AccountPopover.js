@@ -23,10 +23,10 @@ const MENU_OPTIONS = [
     label: 'Dashboard',
     linkTo: PATH_DASHBOARD.general.app,
   },
-  {
-    label: 'Profile',
-    linkTo: PATH_DASHBOARD.user.profile,
-  },
+  // {
+  //   label: 'Profile',
+  //   linkTo: PATH_DASHBOARD.user.profile,
+  // },
   {
     label: 'Settings',
     linkTo: PATH_DASHBOARD.user.account,

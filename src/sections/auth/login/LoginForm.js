@@ -78,6 +78,7 @@ export default function LoginForm() {
     //   }
     // }
     try {
+      console.log(data.email, data.password);
       await login(data.email, data.password);
     } catch (error) {
       console.error(error);
@@ -91,7 +92,7 @@ export default function LoginForm() {
       }
     }
   };
-
+ 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Stack spacing={3}>

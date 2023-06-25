@@ -68,9 +68,9 @@ export default function RechargeForm() {
         '/pay',
         {
           email: user.email,
-          amount: data.amount,
-          meter_number: data.meterNumber,
-          Customer_contact: data.phone,
+          amount: Number(data.amount) * 100,
+          meter_number: Number(data.meterNumber),
+          Customer_contact: Number (data.phone),
         },
         { headers }
       );

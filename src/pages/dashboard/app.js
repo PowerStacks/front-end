@@ -27,6 +27,7 @@ import axios from '../../utils/axios';
 import { useEffect, useState } from 'react';
 // import axios from 'axios'
 import { getAuth, getIdToken } from 'firebase/auth';
+import { firebaseApp } from '../../config';
 
 // const auth = getAuth();
 
@@ -42,7 +43,7 @@ GeneralApp.getLayout = function getLayout(page) {
 
 export default function GeneralApp() {
   let { user } = useAuth();
-  console.log(user)
+  // console.log(`user is ${JSON.stringify(user)}`)
 
   // const { JWTuser } = useJWTAuth();
 
@@ -50,33 +51,43 @@ export default function GeneralApp() {
   const [data, setData] = useState(null);
 
   const { themeStretch } = useSettings();
-  const auth = getAuth()
-const { currentUser } = auth
+  const auth = getAuth(firebaseApp)
+  const  {currentUser}  = auth
+  console.log(`current user  is ${JSON.stringify(currentUser)}`)
+  // getIdToken(currentUser).then((token) => {
+  //   console.log(`token is ${token}`)
+  // })
 // const token = await getIdToken(currentUser, true)
 
   useEffect(() => {
-    console.log(user)
+    
+    console.log(`current user  is ${JSON.stringify(currentUser)}`)
+    console.log(`useEffect user is ${JSON.stringify(user)}`);
     async function fetchData() {
       // const res = await axios.get('http://my-api.com/data');
       // const data = await res.data;
-      const response = await getIdToken(currentUser, true);
-      console.log(response);
-      const headers = { Authorization: `Bearer ${response}` };
+      // console.log(`fetchData current user  is ${JSON.stringify(currentUser)}`)
+      const  apiKey  = auth
+      // console.log(`after call fetchData API key  is ${JSON.stringify(apiKey)}`)
+      const token = await getIdToken(currentUser, true);
+      //firebase.auth().currentUser.getIdToken();
+      console.log(token);
+      const headers = { Authorization: `Bearer ${token}` };
       const res = await axios.get('/user/PurchaseHistory', { headers });
       const { data } = await res;
-      console.log(data);
-      setData(data);
+      console.log(data[0]);
+      setData(data[0]);
     }
 
     fetchData();
-  }, [currentUser]);
+  }, [currentUser, user]);
 
   return (
     <Page title="Dashboard">
       <Container maxWidth={themeStretch ? false : 'xl'}>
         <Grid container spacing={3}>
           <Grid item xs={12} md={12}>
-            {user ? <AppWelcome display_name={user?.display_name} /> : <h4>Please sign in</h4>}
+            {user ? <AppWelcome display_name={user?.display_name} /> : <AppWelcome display_name={currentUser?.display_name} />}
             {/* <AppWelcome display_name={JWTuser?.display_name} /> */}
           </Grid>
 
@@ -85,31 +96,37 @@ const { currentUser } = auth
           </Grid> */}
           <Grid item xs={12} md={4}>
             <AppWidgetSummary
-              title="Total Electricity Usage (Units)"
-              percent={2.6}
-              total={18765}
+              title="Total Electricity Bought (Units)"
+              percent={0}
+              total={data?.purchases?.length > 0 ? data.purchases.reduce((accumulator, object) => {
+                return accumulator + object.amount;
+              }, 0) : 0}
               chartColor={theme.palette.primary.main}
-              chartData={[5, 18, 12, 51, 68, 11, 39, 37, 27, 20]}
+              chartData={data?.purchases?.map(item => item.amount)}
+                // [5, 18, 12, 51, 68, 11, 39, 37, 27, 20]
+              
             />
           </Grid>
 
           <Grid item xs={12} md={4}>
             <AppWidgetSummary
-              title="Days Left"
-              percent={0.2}
-              total={12}
+              title="Previous Units Bought"
+              percent={0}
+              total={data?.purchases?.length > 0 ? data.purchases[data.purchases.length - 1].amount : 0 }
               chartColor={theme.palette.chart.blue[0]}
-              chartData={[20, 41, 63, 33, 28, 35, 50, 46, 11, 26]}
+              chartData={data?.purchases?.length > 0 ? data?.purchases?.map(item => item.amount) : 0}
+                // [5, 18, 12, 51, 68, 11, 39, 37, 27, 20]
+              
             />
           </Grid>
 
           <Grid item xs={12} md={4}>
             <AppWidgetSummary
-              title="Excess usage"
-              percent={-0.1}
-              total={400}
+              title="Unpaid"
+              percent={0}
+              total={0}
               chartColor={theme.palette.chart.red[0]}
-              chartData={[8, 9, 31, 8, 16, 37, 8, 33, 46, 31]}
+              chartData={[0,0,0,0,0,0,0,0,0,0,0,0]}
             />
           </Grid>
 
@@ -118,11 +135,11 @@ const { currentUser } = auth
           </Grid> */}
 
           <Grid item xs={12} lg={8}>
-            <AppNewInvoice data={data}/>
+            <AppNewInvoice data={data} />
           </Grid>
 
           <Grid item xs={12} md={6} lg={8}>
-            <AppAreaInstalled />
+            <AppAreaInstalled data={data} />
           </Grid>
 
           {/* <Grid item xs={12} md={6} lg={4}>

@@ -15,7 +15,7 @@ import useResponsive from '../../hooks/useResponsive';
 import GuestGuard from '../../guards/GuestGuard';
 // components
 import Page from '../../components/Page';
-import Logo from '../../components/Logo';
+// import Logo from '../../components/Logo';
 import Image from '../../components/Image';
 // sections
 import { LoginForm } from '../../sections/auth/login';
@@ -77,7 +77,7 @@ export default function Login() {
       <Page title="Login">
         <RootStyle>
           <HeaderStyle>
-            <Logo />
+            {/* <Logo /> */}
             {smUp && (
               <Typography variant="body2" sx={{ mt: { md: -2 } }}>
                 Don’t have an account? {''}

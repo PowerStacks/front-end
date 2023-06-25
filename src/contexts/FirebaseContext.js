@@ -24,7 +24,7 @@ import { FIREBASE_API } from '../config';
 
 // const ADMIN_EMAILS = ['demo@minimals.cc'];
 
-const firebaseApp = initializeApp(FIREBASE_API);
+export const firebaseApp = initializeApp(FIREBASE_API);
 
 const AUTH = getAuth(firebaseApp);
 
@@ -81,10 +81,9 @@ const handlers = {
 //       isInitialized: true,
 //       user,
 //     };
-//   } else {
-//     handlers[action.type] ? handlers[action.type](state, action) : state;
 //   }
-//   // return state;
+
+//   return state;
 // };
 
 const reducer = (state, action) => (handlers[action.type] ? handlers[action.type](state, action) : state);
@@ -106,7 +105,7 @@ AuthProvider.propTypes = {
 function AuthProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const [profile, setProfile] = useState(null);
+  const [, setProfile] = useState(null);
 
   useEffect(
     () =>
@@ -177,21 +176,31 @@ function AuthProvider({ children }) {
   //   initialize();
   // }, []);
 
-  const login = async (email, password) => { const {user} = signInWithEmailAndPassword(AUTH, email, password)
-  
-  console.log(user)
+  const login = async (email, password) => {
+    try {
+      signInWithEmailAndPassword(AUTH, email, password)
+      const {data} = await axios.post(
+        `https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=${FIREBASE_API.apiKey}`,
+        { email, password, returnSecureToken: true }
+      );
+      console.log(data);
+      const headers = { Authorization: `Bearer ${data.idToken}` };
+      const res = await axios.post('/user/Login', { email, password }, { headers });
+      console.log(res.data.user);
+      let user = res.data.user;
+      dispatch({
+        type: 'LOGIN',
+        payload: {
+          user,
+        },
+      });
 
-  dispatch({
-    type: 'LOGIN',
-    payload: {
-      user,
-    },
-  });
-
-  console.log(initialState);
-  console.log(state);
-
-};
+      console.log(initialState);
+      console.log(state);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const register = async (
     email,
@@ -249,7 +258,10 @@ function AuthProvider({ children }) {
   //     });
   //   });
 
-  const logout = () => signOut(AUTH);
+  const logout = async () => {
+    signOut(AUTH);
+    dispatch({ type: 'LOGOUT' });
+  };
 
   return (
     <AuthContext.Provider
@@ -257,7 +269,7 @@ function AuthProvider({ children }) {
         ...state,
         method: 'jwt',
         user: {
-          id: state?.user?.[0].uid || null,
+          // id: state?.user?.[0].uid || state?.user?.uid,
           email: state?.user?.[0].email || state?.user?.email,
           // role: ADMIN_EMAILS.includes(state?.user?.email) ? 'admin' : 'user',
           display_name: state?.user?.[0].display_name || state?.user?.displayName,
