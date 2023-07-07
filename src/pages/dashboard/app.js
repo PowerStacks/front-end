@@ -60,7 +60,8 @@ export default function GeneralApp() {
 // const token = await getIdToken(currentUser, true)
 
   useEffect(() => {
-    
+    // let { user } = useAuth();
+    const  {currentUser}  = auth
     console.log(`current user  is ${JSON.stringify(currentUser)}`)
     console.log(`useEffect user is ${JSON.stringify(user)}`);
     async function fetchData() {

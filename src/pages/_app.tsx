@@ -87,6 +87,7 @@ export default function MyApp(props: { Component: any; pageProps: any; settings:
     <>
       <Head>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
+        <title>Powerstack</title>
       </Head>
 
       <AuthProvider>

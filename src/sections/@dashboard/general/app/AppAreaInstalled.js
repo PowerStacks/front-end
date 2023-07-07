@@ -12,31 +12,35 @@ import ReactApexChart, { BaseOptionChart } from '../../../../components/chart';
 export default function AppAreaInstalled({data}) {
   const [seriesData, setSeriesData] = useState(2023);
 
-  // const purchaseData = data?.purchases?.map(item => item.amount);
+  const purchaseData = data?.purchases?.map(item => item.amount);
 
   const CHART_DATA = [
-    // {
-    //   year: 2021,
-    //   data: [
-    //     { name: 'Prepaid', data: [10, 41, 35, 51, 49, 62, 69, 91, 148] },
-    //     { name: 'Postpaid', data: [10, 34, 13, 56, 77, 88, 99, 77, 45] },
-    //   ],
-    // },
-    // {
-    //   year: 2022,
-    //   data: [
-    //     { name: 'Prepaid', data: [148, 91, 69, 62, 49, 51, 35, 41, 10] },
-    //     { name: 'Postpaid', data: [45, 77, 99, 88, 77, 56, 13, 34, 10] },
-    //   ],
-    // },
+    {
+      year: 2021,
+      data: [
+        { name: 'Prepaid', data: 
+        [10, 41, 35, 51, 49, 62, 69, 91, 148] },
+        { name: 'Postpaid', data: [10, 34, 13, 56, 77, 88, 99, 77, 45] },
+      ],
+    },
+    {
+      year: 2022,
+      data: [
+        { name: 'Prepaid', data: [148, 91, 69, 62, 49, 51, 35, 41, 10] },
+        { name: 'Postpaid', data: [45, 77, 99, 88, 77, 56, 13, 34, 10] },
+      ],
+    },
     {
       year: 2023,
       data: [
-        { name: 'Prepaid', data: 
-        // {purchaseData}
-          [5, 18, 12, 51, 68, 11, 39, 37, 27, 20]
-         },
-        { name: 'Postpaid', data: [0] },
+        // { name: 'Prepaid', data:  [5, 18, 12, 51, 68, 11, 39, 37, 27, 20]
+        // // {purchaseData}
+        //   // [5, 18, 12, 51, 68, 11, 39, 37, 27, 20]
+        //  },
+        { name: 'Prepaid', data: purchaseData },
+        // [10, 41, 35, 51, 49, 62, 69, 91, 148] },
+        { name: 'Postpaid', data: purchaseData },
+        // [148, 91, 69, 62, 49, 51, 35, 41, 10] },
       ],
     },
   ];

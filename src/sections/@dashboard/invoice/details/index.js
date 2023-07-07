@@ -47,16 +47,22 @@ export default function InvoiceDetails({ invoice }) {
   }
 
   const {
-    items,
-    taxes,
+    amount,
+    date,
+    reference,
     status,
-    dueDate,
-    discount,
-    invoiceTo,
-    createDate,
-    totalPrice,
-    invoiceFrom,
-    invoiceNumber,
+    units,
+
+    // items,
+    // taxes,
+    // status,
+    // dueDate,
+    // discount,
+    // invoiceTo,
+    // createDate,
+    // totalPrice,
+    // invoiceFrom,
+    // invoiceNumber,
     subTotalPrice,
   } = invoice;
 
@@ -66,16 +72,14 @@ export default function InvoiceDetails({ invoice }) {
 
       <Card sx={{ pt: 5, px: 5 }}>
         <Grid container>
-          <Grid item xs={12} sm={6} sx={{ mb: 5 }}>
-            <Image disabledEffect visibleByDefault alt="logo" src="/logo/logo_full.svg" sx={{ maxWidth: 120 }} />
-          </Grid>
 
-          <Grid item xs={12} sm={6} sx={{ mb: 5 }}>
-            <Box sx={{ textAlign: { sm: 'right' } }}>
+
+          <Grid item xs={12} sm={12} sx={{ mb: 2 }}>
+            <Box sx={{ textAlign: { sm: 'center' } }}>
               <Label
                 variant={theme.palette.mode === 'light' ? 'ghost' : 'filled'}
                 color={
-                  (status === 'paid' && 'success') ||
+                  (status === 'success' && 'success') ||
                   (status === 'unpaid' && 'warning') ||
                   (status === 'overdue' && 'error') ||
                   'default'
@@ -84,48 +88,50 @@ export default function InvoiceDetails({ invoice }) {
               >
                 {status}
               </Label>
-
-              <Typography variant="h6">{invoiceNumber}</Typography>
+              <br/>
+              {typeof units === 'string' ? <Typography variant="h2">123456789</Typography> : <Typography variant="h2">{units}</Typography>}
             </Box>
           </Grid>
 
-          <Grid item xs={12} sm={6} sx={{ mb: 5 }}>
+          <Grid item xs={12} sm={12} sx={{ mb: 5,  textAlign: { sm: 'center' } }}>
+            <Typography paragraph variant="overline" sx={{ color: 'text.disabled' }}>
+              Date
+            </Typography>
+            <Typography variant="body2">{fDate(date)}</Typography>
+          </Grid>
+
+          {/* <Grid item xs={12} sm={6} sx={{ mb: 5 }}>
             <Typography paragraph variant="overline" sx={{ color: 'text.disabled' }}>
               Invoice from
             </Typography>
             <Typography variant="body2">{invoiceFrom.name}</Typography>
             <Typography variant="body2">{invoiceFrom.address}</Typography>
             <Typography variant="body2">Phone: {invoiceFrom.phone}</Typography>
-          </Grid>
+          </Grid> */}
 
-          <Grid item xs={12} sm={6} sx={{ mb: 5 }}>
+          {/* <Grid item xs={12} sm={6} sx={{ mb: 5 }}>
             <Typography paragraph variant="overline" sx={{ color: 'text.disabled' }}>
               Invoice to
             </Typography>
             <Typography variant="body2">{invoiceTo.name}</Typography>
             <Typography variant="body2">{invoiceTo.address}</Typography>
             <Typography variant="body2">Phone: {invoiceTo.phone}</Typography>
-          </Grid>
+          </Grid> */}
 
-          <Grid item xs={12} sm={6} sx={{ mb: 5 }}>
-            <Typography paragraph variant="overline" sx={{ color: 'text.disabled' }}>
-              date create
-            </Typography>
-            <Typography variant="body2">{fDate(createDate)}</Typography>
-          </Grid>
+          
 
-          <Grid item xs={12} sm={6} sx={{ mb: 5 }}>
+          {/* <Grid item xs={12} sm={6} sx={{ mb: 5 }}>
             <Typography paragraph variant="overline" sx={{ color: 'text.disabled' }}>
               Due date
             </Typography>
             <Typography variant="body2">{fDate(dueDate)}</Typography>
-          </Grid>
+          </Grid> */}
         </Grid>
 
-        <Scrollbar>
-          <TableContainer sx={{ minWidth: 960 }}>
+        {/* <Scrollbar> */}
+          <TableContainer >
             <Table>
-              <TableHead
+              {/* <TableHead
                 sx={{
                   borderBottom: (theme) => `solid 1px ${theme.palette.divider}`,
                   '& th': { backgroundColor: 'transparent' },
@@ -135,13 +141,13 @@ export default function InvoiceDetails({ invoice }) {
                   <TableCell width={40}>#</TableCell>
                   <TableCell align="left">Description</TableCell>
                   <TableCell align="left">Qty</TableCell>
-                  <TableCell align="right">Unit price</TableCell>
-                  <TableCell align="right">Total</TableCell>
+                  <TableCell align="center">Unit price</TableCell>
+                  <TableCell align="center">Total</TableCell>
                 </TableRow>
-              </TableHead>
+              </TableHead> */}
 
               <TableBody>
-                {items.map((row, index) => (
+                {/* {items.map((row, index) => (
                   <TableRow
                     key={index}
                     sx={{
@@ -158,71 +164,73 @@ export default function InvoiceDetails({ invoice }) {
                       </Box>
                     </TableCell>
                     <TableCell align="left">{row.quantity}</TableCell>
-                    <TableCell align="right">{fCurrency(row.price)}</TableCell>
-                    <TableCell align="right">{fCurrency(row.price * row.quantity)}</TableCell>
+                    <TableCell align="center">{fCurrency(row.price)}</TableCell>
+                    <TableCell align="center">{fCurrency(row.price * row.quantity)}</TableCell>
                   </TableRow>
-                ))}
+                ))} */}
 
                 <RowResultStyle>
-                  <TableCell colSpan={3} />
-                  <TableCell align="right">
+                  {/* <TableCell colSpan={6} /> */}
+                  <TableCell align="center">
                     <Box sx={{ mt: 2 }} />
-                    <Typography>Subtotal</Typography>
+                    <Typography variant="h6">Amount</Typography>
                   </TableCell>
-                  <TableCell align="right" width={120}>
+                  <TableCell align="center" width={120}>
                     <Box sx={{ mt: 2 }} />
-                    <Typography>{fCurrency(subTotalPrice)}</Typography>
+                    <Typography variant="h6">₦{fCurrency(amount/100)}</Typography>
                   </TableCell>
                 </RowResultStyle>
 
-                <RowResultStyle>
+                {/* <RowResultStyle>
                   <TableCell colSpan={3} />
-                  <TableCell align="right">
+                  <TableCell align="center">
                     <Typography>Discount</Typography>
                   </TableCell>
-                  <TableCell align="right" width={120}>
+                  <TableCell align="center" width={120}>
                     <Typography sx={{ color: 'error.main' }}>{discount && fCurrency(-discount)}</Typography>
                   </TableCell>
-                </RowResultStyle>
+                </RowResultStyle> */}
 
-                <RowResultStyle>
+                {/* <RowResultStyle>
                   <TableCell colSpan={3} />
-                  <TableCell align="right">
+                  <TableCell align="center">
                     <Typography>Taxes</Typography>
                   </TableCell>
-                  <TableCell align="right" width={120}>
+                  <TableCell align="center" width={120}>
                     <Typography>{taxes && fCurrency(taxes)}</Typography>
                   </TableCell>
-                </RowResultStyle>
-
+                </RowResultStyle> */}
+<br/>
                 <RowResultStyle>
-                  <TableCell colSpan={3} />
-                  <TableCell align="right">
-                    <Typography variant="h6">Total</Typography>
+                  {/* <TableCell colSpan={6} /> */}
+                  <TableCell align="center">
+                    <Typography variant="h6">Reference</Typography>
                   </TableCell>
-                  <TableCell align="right" width={140}>
-                    <Typography variant="h6">{fCurrency(totalPrice)}</Typography>
+                  <TableCell align="center" >
+                    {/* <Typography variant="h6">{fCurrency(totalPrice)}</Typography> */}
+                    {/* {typeof units === 'string' ? <Typography variant="h6">123456789</Typography> : <Typography variant="h6">{units}</Typography>} */}
+                    <Typography variant="h6">{reference}</Typography>
                   </TableCell>
                 </RowResultStyle>
               </TableBody>
             </Table>
           </TableContainer>
-        </Scrollbar>
+        {/* </Scrollbar> */}
 
         <Divider sx={{ mt: 5 }} />
 
-        <Grid container>
-          <Grid item xs={12} md={9} sx={{ py: 3 }}>
-            <Typography variant="subtitle2">NOTES</Typography>
+        {/* <Grid container> */}
+          <Grid item xs={12} md={9} sx={{ py: 3, textAlign: 'center'}}>
+            {/* <Typography variant="subtitle2">NOTES</Typography> */}
             <Typography variant="body2">
-              We appreciate your business. Should you need us to add VAT or extra notes let us know!
+            Thank you.  We appreciate your business.
             </Typography>
           </Grid>
-          <Grid item xs={12} md={3} sx={{ py: 3, textAlign: 'right' }}>
-            <Typography variant="subtitle2">Have a Question?</Typography>
-            <Typography variant="body2">support@minimals.cc</Typography>
+          <Grid item xs={12} md={3} sx={{ py: 3, textAlign: 'center' }}>
+            <Typography variant="subtitle2">More enquiries</Typography>
+            <Typography variant="body2">support@powerstack.co</Typography>
           </Grid>
-        </Grid>
+        {/* </Grid> */}
       </Card>
     </>
   );

@@ -20,6 +20,7 @@ export default class MyDocument extends Document {
       <Html lang="en">
         <Head>
           <meta charSet="utf-8" />
+          {/* <title>Powerstack</title> */}
           <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
           <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
           <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
@@ -32,13 +33,15 @@ export default class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap"
             rel="stylesheet"
           />
-          <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+          {/* <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests" /> */}
           <meta
             name="description"
             content="Trust Powerstack for all your Power Needs. Electrifying the Nation."
           />
           <meta name="keywords" content="react,material,kit,application,dashboard,admin,template" />
           <meta name="author" content="Powerstack UI Kit" />
+          {/* <title>&lt;title&gt; element</title> */}
+
         </Head>
 
         <body>

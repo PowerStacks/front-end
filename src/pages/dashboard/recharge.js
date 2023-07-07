@@ -14,7 +14,8 @@ import useResponsive from '../../hooks/useResponsive';
 // components
 import Page from '../../components/Page';
 import Logo from '../../components/Logo';
-import Image from '../../components/Image';
+// import PowerLogoNoText from '../../assets/logo/logo-color.svg';
+// import Image from '../../components/Image';
 // sections
 import { RechargeForm } from '../../sections/@dashboard/recharge';
 
@@ -113,12 +114,14 @@ export default function Login() {
 
                 <Tooltip title={capitalCase(method)} placement="right">
                   <>
-                    <Image
+                  <Logo noText height={32} />
+                    {/* <Image
                       disabledEffect
                       alt={method}
-                      src={`https://minimal-assets-api.vercel.app/assets/icons/auth/ic_${method}.png`}
+                      // src={`https://minimal-assets-api.vercel.app/assets/icons/auth/ic_${method}.png`}
+                      src={PowerLogoNoText}
                       sx={{ width: 32, height: 32 }}
-                    />
+                    /> */}
                   </>
                 </Tooltip>
               </Stack>
