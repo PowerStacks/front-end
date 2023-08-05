@@ -23,7 +23,7 @@ import { ReactElementLike, ReactNodeArray } from 'prop-types';
 // ----------------------------------------------------------------------
 
 const RootStyle = styled('div')(() => ({
-  height: '100%',
+  height: '100%', 
 }));
 
 const ContentStyle = styled('div')(({ theme }) => ({
