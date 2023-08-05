@@ -99,9 +99,7 @@ export default function GeneralApp() {
             <AppWidgetSummary
               title="Total Electricity Bought (Units)"
               percent={0}
-              total={data?.purchases?.length > 0 ? data.purchases.reduce((accumulator, object) => {
-                return accumulator + object.amount;
-              }, 0) : 0}
+              total={data?.purchases?.length > 0 ? data.purchases.reduce((accumulator, object) => accumulator + object.amount, 0) : 0}
               chartColor={theme.palette.primary.main}
               chartData={data?.purchases?.map(item => item.amount)}
                 // [5, 18, 12, 51, 68, 11, 39, 37, 27, 20]

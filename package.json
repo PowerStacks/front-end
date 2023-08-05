@@ -7,7 +7,7 @@
     "lint": "next lint",
     "lint:es": "eslint --ext .js,.jsx .",
     "lint:fix": "eslint --fix --ext .js,.jsx .",
-    "build": "CI='' next build",
+    "build": "next build",
     "start": "next start",
     "clear-all": "rm -rf .next node_modules",
     "re-start": "rm -rf .next node_modules && yarn install && yarn dev",

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Card, CardHeader, Box, TextField } from '@mui/material';
 // components
 import ReactApexChart, { BaseOptionChart } from '../../../../components/chart';
+import PropTypes from 'prop-types';
 
 // ----------------------------------------------------------------------
 

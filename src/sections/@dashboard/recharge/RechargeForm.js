@@ -159,9 +159,7 @@ export default function RechargeForm() {
   };
 
   const onSubmit = async () => {
-    try {
-
-    } catch (error) {
+    try { /* empty */ } catch (error) {
       console.error(error);
       // reset();
       if (isMountedRef.current) {

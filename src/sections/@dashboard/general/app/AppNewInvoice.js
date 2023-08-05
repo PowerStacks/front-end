@@ -117,6 +117,7 @@ export default function AppNewInvoice({data}) {
 
 // ----------------------------------------------------------------------
 
+// eslint-disable-next-line no-unused-vars
 function MoreMenuButton() {
   const [open, setOpen] = useState(null);
 
