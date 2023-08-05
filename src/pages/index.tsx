@@ -14,7 +14,7 @@ import {
   // HomePricingPlans,
   HomeAdvertisement, 
   HomeCleanInterfaces,
-  HomeHugePackElements,
+  // HomeHugePackElements,
 } from '../sections/home';
 import { AboutWhat, AboutTestimonials } from '@/sections/about';
 import { ReactElementLike, ReactNodeArray } from 'prop-types';
@@ -48,7 +48,7 @@ export default function HomePage() {
         <ContentStyle>
           <HomePowerStack />
         <AboutWhat/>
-          <HomeHugePackElements />
+          {/* <HomeHugePackElements /> */}
 
           <HomeDarkMode />
 

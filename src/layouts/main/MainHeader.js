@@ -90,9 +90,9 @@ export default function MainHeader() {
           <Box sx={{ flexGrow: 1 }} />
 
           {/* {isDesktop && <MenuDesktop isOffset={isOffset} isHome={isHome} navConfig={navConfig} />} */}
-          <NextLink href={PATH_AUTH.register} passHref>
+          <NextLink href={PATH_AUTH.login} passHref>
             <Button variant="contained" target="_blank" rel="noopener">
-              Register
+              LOGIN
             </Button>
           </NextLink>
 

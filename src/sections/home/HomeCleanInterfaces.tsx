@@ -1,10 +1,12 @@
-import { m } from 'framer-motion';
+// import { m } from 'framer-motion';
 // @mui
 import { alpha, styled } from '@mui/material/styles';
 import { Box, Container, Typography, useTheme } from '@mui/material';
 // components
 import Image from '../../components/Image';
-import { MotionViewport, varFade } from '../../components/animate';
+import { MotionViewport, 
+  // varFade
+ } from '../../components/animate';
 
 // ----------------------------------------------------------------------
 
@@ -39,13 +41,13 @@ export default function HomeCleanInterfaces() {
     <RootStyle>
       <Container component={MotionViewport}>
         <ContentStyle>
-          <m.div variants={varFade().inUp}>
+          {/* <m.div variants={varFade().inUp}> */}
             <Typography component="div" variant="overline" sx={{ mb: 2, color: 'text.disabled' }}>
               clean & clear
             </Typography>
-          </m.div>
+          {/* </m.div> */}
 
-          <m.div variants={varFade().inUp}>
+          {/* <m.div variants={varFade().inUp}> */}
             <Typography
               variant="h2"
               paragraph
@@ -60,15 +62,15 @@ export default function HomeCleanInterfaces() {
             <Typography sx={{ color: 'common.black', mb: 5 }}>
               We employ industry best practices and standards to provide the best user experience.
             </Typography>
-          </m.div>
+          {/* </m.div> */}
         </ContentStyle>
 
         <Box sx={{ position: 'relative' }}>
           {IMG.map((_, index) => (
             <Box
               key={index}
-              component={m.div}
-              variants={varFade().inUp}
+              component={'div'}
+              // variants={varFade().inUp}
               sx={{
                 top: 0,
                 left: 0,

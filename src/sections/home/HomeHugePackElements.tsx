@@ -1,10 +1,12 @@
-import { m } from 'framer-motion';
+// import { m } from 'framer-motion';
 // @mui
 import { alpha, useTheme, styled } from '@mui/material/styles';
 import { Box, Grid, Button, Container, Typography } from '@mui/material';
 // components
 import Image from '../../components/Image';
-import { MotionViewport, varFade } from '../../components/animate';
+import { MotionViewport, 
+  // varFade 
+} from '../../components/animate';
 
 // ----------------------------------------------------------------------
 
@@ -22,7 +24,7 @@ const ContentStyle = styled('div')(({ theme }) => ({
   },
 }));
 
-const ScreenStyle = styled(m.div)(({ theme }) => ({
+const ScreenStyle = styled('div')(({ theme }) => ({
   paddingRight: 2,
   paddingBottom: 1,
   maxWidth: 160,
@@ -41,28 +43,28 @@ const ScreenStyle = styled(m.div)(({ theme }) => ({
   },
 }));
 
-const COMMON = {
-  scaleX: 0.86,
-  skewY: 8,
-  skewX: 0,
-  scaleY: 1,
-  translateX: 0,
-  translateY: 0,
-  opacity: 0,
-};
+// const COMMON = {
+//   scaleX: 0.86,
+//   skewY: 8,
+//   skewX: 0,
+//   scaleY: 1,
+//   translateX: 0,
+//   translateY: 0,
+//   opacity: 0,
+// };
 
-const variantScreenLeft = {
-  initial: COMMON,
-  animate: { ...COMMON, translateX: '-50%', translateY: 40, opacity: 1 },
-};
-const variantScreenCenter = {
-  initial: COMMON,
-  animate: { ...COMMON, opacity: 1 },
-};
-const variantScreenRight = {
-  initial: COMMON,
-  animate: { ...COMMON, translateX: '50%', translateY: -40, opacity: 1 },
-};
+// const variantScreenLeft = {
+//   initial: COMMON,
+//   animate: { ...COMMON, translateX: '-50%', translateY: 40, opacity: 1 },
+// };
+// const variantScreenCenter = {
+//   initial: COMMON,
+//   animate: { ...COMMON, opacity: 1 },
+// };
+// const variantScreenRight = {
+//   initial: COMMON,
+//   animate: { ...COMMON, translateX: '50%', translateY: -40, opacity: 1 },
+// };
 
 // ----------------------------------------------------------------------
 
@@ -73,11 +75,11 @@ export default function HomeHugePackElements() {
 
   const isRTL = theme.direction === 'rtl';
 
-  const screenLeftAnimate = variantScreenLeft;
+  // const screenLeftAnimate = variantScreenLeft;
 
-  const screenCenterAnimate = variantScreenCenter;
+  // const screenCenterAnimate = variantScreenCenter;
 
-  const screenRightAnimate = variantScreenRight;
+  // const screenRightAnimate = variantScreenRight;
 
   return (
     <RootStyle>
@@ -85,20 +87,20 @@ export default function HomeHugePackElements() {
         <Grid container spacing={5} justifyContent="center">
           <Grid item xs={12} md={4} sx={{ display: 'flex', alignItems: 'center' }}>
             <ContentStyle>
-              <m.div variants={varFade().inUp}>
+              {/* <m.div variants={varFade().inUp}> */}
                 <Typography component="div" variant="overline" sx={{ mb: 2, color: 'text.disabled' }}>
                   Friendly Interfaces
                 </Typography>
-              </m.div>
+              {/* </m.div> */}
 
-              <m.div variants={varFade().inUp}>
+              {/* <m.div variants={varFade().inUp}> */}
                 <Typography variant="h2" sx={{ mb: 3 }}>
                   High degree<br />
                   of interactivity and control
                 </Typography>
-              </m.div>
+              {/* </m.div> */}
 
-              <m.div variants={varFade().inUp}>
+              {/* <m.div variants={varFade().inUp}> */}
                 <Typography
                   sx={{
                     mb: 5,
@@ -107,9 +109,9 @@ export default function HomeHugePackElements() {
                 >
                   We constantly update our interfaces to provide you with the most relevent actions and information.
                 </Typography>
-              </m.div>
+              {/* </m.div> */}
 
-              <m.div variants={varFade().inUp}>
+              {/* <m.div variants={varFade().inUp}> */}
                 <Button
                   size="large"
                   color="inherit"
@@ -120,7 +122,7 @@ export default function HomeHugePackElements() {
                 >
                  Learn more
                 </Button>
-              </m.div>
+              {/* </m.div> */}
             </ContentStyle>
           </Grid>
 
@@ -136,12 +138,12 @@ export default function HomeHugePackElements() {
               {[...Array(3)].map((_, index) => (
                 <ScreenStyle
                   key={index}
-                  variants={{
-                    ...(index === 0 && screenLeftAnimate),
-                    ...(index === 1 && screenCenterAnimate),
-                    ...(index === 2 && screenRightAnimate),
-                  }}
-                  transition={{ duration: 0.72, ease: 'easeOut' }}
+                  // variants={{
+                  //   ...(index === 0 && screenLeftAnimate),
+                  //   ...(index === 1 && screenCenterAnimate),
+                  //   ...(index === 2 && screenRightAnimate),
+                  // }}
+                  // transition={{ duration: 0.72, ease: 'easeOut' }}
                   sx={{
                     boxShadow: `${isRTL ? -80 : 80}px -40px 80px ${alpha(
                       isLight ? theme.palette.grey[600] : theme.palette.common.black,
