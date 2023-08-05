@@ -9,7 +9,7 @@ import {
   Divider,
   TableRow,
   TableBody,
-  TableHead,
+  // TableHead,
   TableCell,
   Typography,
   TableContainer,
@@ -19,8 +19,8 @@ import { fDate } from '../../../../utils/formatTime';
 import { fCurrency } from '../../../../utils/formatNumber';
 // components
 import Label from '../../../../components/Label';
-import Image from '../../../../components/Image';
-import Scrollbar from '../../../../components/Scrollbar';
+// import Image from '../../../../components/Image';
+// import Scrollbar from '../../../../components/Scrollbar';
 //
 // import InvoiceToolbar from './InvoiceToolbar';
 
@@ -63,7 +63,7 @@ export default function InvoiceDetails({ invoice }) {
     // totalPrice,
     // invoiceFrom,
     // invoiceNumber,
-    subTotalPrice,
+    // subTotalPrice,
   } = invoice;
 
   return (

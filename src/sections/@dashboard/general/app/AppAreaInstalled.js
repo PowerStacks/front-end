@@ -7,7 +7,9 @@ import ReactApexChart, { BaseOptionChart } from '../../../../components/chart';
 
 // ----------------------------------------------------------------------
 
-
+AppAreaInstalled.propTypes = {
+  data: PropTypes.object,
+};
 
 export default function AppAreaInstalled({data}) {
   const [seriesData, setSeriesData] = useState(2023);

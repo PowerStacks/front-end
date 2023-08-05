@@ -19,12 +19,12 @@ import { FormProvider, RHFTextField } from '../../../components/hook-form';
 import axios from '../../../utils/axios';
 import { getAuth, getIdToken } from 'firebase/auth';
 import { usePaystackPayment } from 'react-paystack';
-import HeaderBreadcrumbs from '../../../components/HeaderBreadcrumbs';
+// import HeaderBreadcrumbs from '../../../components/HeaderBreadcrumbs';
 // sections
-import Invoice from '../../../sections/@dashboard/invoice/details';
+import Invoice from '../invoice/details';
 import { Container, Typography, Link } from '@mui/material';
 import useSettings from '../../../hooks/useSettings';
-import { PATH_DASHBOARD } from '../../../routes/paths';
+// import { PATH_DASHBOARD } from '../../../routes/paths';
 import NextLink from 'next/link';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
@@ -158,7 +158,7 @@ export default function RechargeForm() {
     );
   };
 
-  const onSubmit = async (_data) => {
+  const onSubmit = async () => {
     try {
 
     } catch (error) {

@@ -68,7 +68,7 @@ export default function GeneralApp() {
       // const res = await axios.get('http://my-api.com/data');
       // const data = await res.data;
       // console.log(`fetchData current user  is ${JSON.stringify(currentUser)}`)
-      const  apiKey  = auth
+      // const  apiKey  = auth
       // console.log(`after call fetchData API key  is ${JSON.stringify(apiKey)}`)
       const token = await getIdToken(currentUser, true);
       //firebase.auth().currentUser.getIdToken();
@@ -81,7 +81,7 @@ export default function GeneralApp() {
     }
 
     fetchData();
-  }, [currentUser, user]);
+  }, [currentUser, user, auth]);
 
   return (
     <Page title="Dashboard">
