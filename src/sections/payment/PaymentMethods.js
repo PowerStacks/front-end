@@ -65,7 +65,8 @@ PaymentMethods.propTypes = {
 };
 
 export default function PaymentMethods(
-  {setInvoice, 
+  {
+    // setInvoice, 
     invoice,
   amount, 
   email,   
@@ -129,7 +130,7 @@ let confirmedEmail = regexExp.test(email) ? email : 'pay@powerstack.com'
       // await getIdToken(currentUser, true);
       console.log(token);
       // console.log(user);
-      const headers = { Authorization: `Bearer ${token}` };
+      // const headers = { Authorization: `Bearer ${token}` };
       const response = await axios.get(
         'https://restcountries.com/v3.1/all'
         // `https://am3mmr7z3a.execute-api.us-east-2.amazonaws.com/Prod/
