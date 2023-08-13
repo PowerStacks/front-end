@@ -1,11 +1,11 @@
 // next
-// import { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 // @mui
 import { styled, useTheme } from '@mui/material/styles';
 import { Box, Button, AppBar, Toolbar, Container } from '@mui/material';
 // hooks
 import useOffSetTop from '../../hooks/useOffSetTop';
-// import useResponsive from '../../hooks/useResponsive';
+import useResponsive from '../../hooks/useResponsive';
 // utils
 import cssStyles from '../../utils/cssStyles';
 // config
@@ -21,9 +21,9 @@ import NextLink from 'next/link';
 
 // import Label from '../../components/Label'; 
 //
-// import MenuDesktop from './MenuDesktop';
-// import MenuMobile from './MenuMobile';
-// import navConfig from './MenuConfig';
+import MenuDesktop from './MenuDesktop';
+import MenuMobile from './MenuMobile';
+import navConfig from './MenuConfig';
 
 // ----------------------------------------------------------------------
 
@@ -58,11 +58,11 @@ export default function MainHeader() {
 
   const theme = useTheme();
 
-  // const { pathname } = useRouter();
+  const { pathname } = useRouter();
 
-  // const isDesktop = useResponsive('up', 'md');
+  const isDesktop = useResponsive('up', 'md');
 
-  // const isHome = pathname === '/';
+  const isHome = pathname === '/';
 
   return (
     <AppBar sx={{ boxShadow: 0, bgcolor: 'transparent' }}>
@@ -89,14 +89,14 @@ export default function MainHeader() {
           </Label> */}
           <Box sx={{ flexGrow: 1 }} />
 
-          {/* {isDesktop && <MenuDesktop isOffset={isOffset} isHome={isHome} navConfig={navConfig} />} */}
+          {isDesktop && <MenuDesktop isOffset={isOffset} isHome={isHome} navConfig={navConfig} />}
           <NextLink href={PATH_AUTH.login} passHref>
             <Button variant="contained" target="_blank" rel="noopener">
               LOGIN
             </Button>
           </NextLink>
 
-          {/* {!isDesktop && <MenuMobile isOffset={isOffset} isHome={isHome} navConfig={navConfig} />} */}
+          {!isDesktop && <MenuMobile isOffset={isOffset} isHome={isHome} navConfig={navConfig} />}
         </Container>
       </ToolbarStyle>
 

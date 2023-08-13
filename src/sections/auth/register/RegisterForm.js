@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 import * as Yup from 'yup';
 import { useState } from 'react';
 // form
@@ -12,6 +13,8 @@ import useIsMountedRef from '../../../hooks/useIsMountedRef';
 // components
 import Iconify from '../../../components/Iconify';
 import { FormProvider, RHFTextField } from '../../../components/hook-form';
+// import { CognitoUser, CognitoUserPool, AuthenticationDetails } from 'amazon-cognito-identity-js';
+import { CognitoUserPool, CognitoUserAttribute } from 'amazon-cognito-identity-js';
 // import axios from 'axios';
 
 // ----------------------------------------------------------------------
@@ -50,53 +53,25 @@ export default function RegisterForm() {
   } = methods;
 
   const onSubmit = async (data) => {
-    // console.log({ data });
-    // reset();
-    // try {
-    //   console.log( {email: data.email,
-    //       password: data.password,
-    //       display_name: `${data.firstName} ${data.lastName}`,
-    //       is_merchant: true,
-    //       is_admin: false,})
-    //   const res = await axios.post(
-    //     'http://104.236.193.32:8000/user/CreateUser',
-    //     {
-    //       email: data.email,
-    //       password: data.password,
-    //       display_name: `${data.firstName} ${data.lastName}`,
-    //       is_merchant: true,
-    //       is_admin: false,
-    //     },
-    //     {
-    //       headers: {
-    //         'Content-Type': 'application/json',
-    //       },
-    //     }
-    //   );
-    //   console.log(res);
-    // } catch (error) {
-    //   console.error(error);
-    //   reset();
-    //   if (isMountedRef.current) {
-    //     setError('afterSubmit', { ...error, message: error.message });
-    //   }
-    // }
+    
     try {
-      await register({email: data.email,
+      await register(
+        // data.email, data.password, data.firstName, data.lastName
+        {email: data.email,
           password: data.password,
           // returnSecureToken: true
-          display_name: `${data.firstName} ${data.lastName}`,
-          is_merchant: false,
-          is_admin: false,
+          username: `${data.firstName} ${data.lastName}`,
+          userType: 'REGULAR'
+          // is_merchant: false,
+          // is_admin: false,
         }
         );
-         console.log({
-           email: data.email,
-           password: data.password,
-           display_name: `${data.firstName} ${data.lastName}`,
-           is_merchant: true,
-           is_admin: false,
-         });
+        //  console.log({
+        //   email: data.email,
+        //   password: data.password,
+        //   username: `${data.firstName} ${data.lastName}`,
+        //   userType: 'REGULAR'
+        //  });
     } catch (error) {
       
       // console.error(error);
@@ -110,8 +85,60 @@ export default function RegisterForm() {
     }
   };
 
+  const handleSignUp = async (data, event) => {
+    event.preventDefault();
+    try {
+      // let username = `${data.firstName}_${data.lastName}`;
+      let username = `${data.email}`;
+      // await signUp(username, password, email);
+      await signUp(username, data.password, data.email)
+      console.log('Sign Up  was successful!');
+      // Handle successful sign-up, e.g., display success message, redirect to a verification page, etc.
+    } catch (error) {
+      console.error('Sign Up error:', error);
+      if (error.message.includes('pattern')) {
+        setError('afterSubmit', { ...error, message: 'No spacekeys allowed. Please input a valid username' });
+        console.log(setError);
+      console.log(error.message);
+      } else {
+        setError('afterSubmit', { ...error, message: error.message });
+        console.log(setError);
+        console.log(error.message);
+      }
+     
+      // Handle sign-up error, display an error message, etc.
+    }
+  };
+
+  const signUp = async (username, password, email) => {
+    const poolData = {
+      UserPoolId: 'us-east-1_OMTYcoMVD', // Replace with your Cognito User Pool ID
+      ClientId: '2mcd4823p6bn53od41df1uonog', // Replace with your Cognito App Client ID
+    };
+
+    const userPool = new CognitoUserPool(poolData);
+    const attributeList = [
+      new CognitoUserAttribute({ Name: 'email', Value: email }),
+      new CognitoUserAttribute({Name: 'custom:UserType', Value: 'MERCHANT'}),
+      // Add any other user attributes you want to set during sign-up
+    ];
+
+    return new Promise((resolve, reject) => {
+      userPool.signUp(username, password, attributeList, null, (error, result) => {
+        if (error) {
+          console.error('Error signing up:', error);
+          reject(error);
+        } else {
+          console.log('Sign-up result:', result);
+          resolve(result.user);
+        }
+      });
+    });
+  };
+
+
   return (
-    <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+    <FormProvider methods={methods} onSubmit={handleSubmit(handleSignUp)}>
       <Stack spacing={3}>
         {!!errors.afterSubmit && <Alert severity="error">{errors.afterSubmit.message}</Alert>}
 

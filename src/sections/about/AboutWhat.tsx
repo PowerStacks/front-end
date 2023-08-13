@@ -48,8 +48,8 @@ export default function AboutWhat() {
           {isDesktop && (
             <Grid item xs={12} md={6} lg={7} sx={{ pr: { md: 7 } }}>
               <Grid container spacing={3} alignItems="flex-end">
-                <Grid item xs={6}>
-                  {/* <m.div variants={varFade().inUp}> */}
+                {/* <Grid item xs={6}>
+                  <m.div variants={varFade().inUp}>
                     <Image
                       alt="our office 1"
                       src="https://minimal-assets-api.vercel.app/assets/images/about/what-1.jpg"
@@ -59,8 +59,8 @@ export default function AboutWhat() {
                         boxShadow: shadow,
                       }}
                     />
-                  {/* </m.div> */}
-                </Grid>
+                  </m.div>
+                </Grid> */}
                 <Grid item xs={6}>
                   {/* <m.div variants={varFade().inUp}> */}
                     <Image

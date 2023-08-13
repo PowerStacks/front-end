@@ -1,220 +1,249 @@
-// import PropTypes from 'prop-types';
-// import { createContext, useCallback, useEffect, useReducer } from 'react';
-// import { CognitoUser, CognitoUserPool, AuthenticationDetails } from 'amazon-cognito-identity-js';
-// // utils
-// import axios from '../utils/axios';
-// // routes
-// import { PATH_AUTH } from '../routes/paths';
-// //
-// import { COGNITO_API } from '../config';
+import PropTypes from 'prop-types';
+import { createContext, useCallback, useEffect, useReducer } from 'react';
+import { CognitoUser, CognitoUserPool, AuthenticationDetails } from 'amazon-cognito-identity-js';
+// utils
+import axios from '../utils/axios';
+// routes
+import { PATH_AUTH } from '../routes/paths';
+//
+import { COGNITO_API } from '../config';
 
-// // ----------------------------------------------------------------------
+// ----------------------------------------------------------------------
 
-// // CAUTION: User Cognito is slily difference from firebase, so be sure to read the doc carefully.
+// CAUTION: User Cognito is slily difference from firebase, so be sure to read the doc carefully.
 
 // export const UserPool = new CognitoUserPool({
 //   UserPoolId: COGNITO_API.userPoolId,
 //   ClientId: COGNITO_API.clientId,
 // });
 
-// const initialState = {
-//   isAuthenticated: false,
-//   isInitialized: false,
-//   user: null,
-// };
+export const UserPool = new CognitoUserPool({
+    UserPoolId: 'us-east-1_OMTYcoMVD',
+    ClientId: '2mcd4823p6bn53od41df1uonog',
+  });
 
-// const handlers = {
-//   AUTHENTICATE: (state, action) => {
-//     const { isAuthenticated, user } = action.payload;
+const initialState = {
+  isAuthenticated: false,
+  isInitialized: false,
+  user: null,
+};
 
-//     return {
-//       ...state,
-//       isAuthenticated,
-//       isInitialized: true,
-//       user,
-//     };
-//   },
-//   LOGOUT: (state) => ({
-//     ...state,
-//     isAuthenticated: false,
-//     user: null,
-//   }),
-// };
+const handlers = {
+  AUTHENTICATE: (state, action) => {
+    const { isAuthenticated, user } = action.payload;
 
-// const reducer = (state, action) => (handlers[action.type] ? handlers[action.type](state, action) : state);
+    return {
+      ...state,
+      isAuthenticated,
+      isInitialized: true,
+      user,
+    };
+  },
+  LOGOUT: (state) => ({
+    ...state,
+    isAuthenticated: false,
+    user: null,
+  }),
+};
 
-// const AuthContext = createContext({
-//   ...initialState,
-//   method: 'cognito',
-//   login: () => Promise.resolve(),
-//   register: () => Promise.resolve(),
-//   logout: () => Promise.resolve(),
-// });
+const reducer = (state, action) => (handlers[action.type] ? handlers[action.type](state, action) : state);
 
-// // ----------------------------------------------------------------------
+const AuthContext = createContext({
+  ...initialState,
+  method: 'cognito',
+  login: () => Promise.resolve(),
+  register: () => Promise.resolve(),
+  logout: () => Promise.resolve(),
+});
 
-// AuthProvider.propTypes = {
-//   children: PropTypes.node,
-// };
+// ----------------------------------------------------------------------
 
-// function AuthProvider({ children }) {
-//   const [state, dispatch] = useReducer(reducer, initialState);
+AuthProvider.propTypes = {
+  children: PropTypes.node,
+};
 
-//   const getUserAttributes = useCallback(
-//     (currentUser) =>
-//       new Promise((resolve, reject) => {
-//         currentUser.getUserAttributes((err, attributes) => {
-//           if (err) {
-//             reject(err);
-//           } else {
-//             const results = {};
+function AuthProvider({ children }) {
+  const [state, dispatch] = useReducer(reducer, initialState);
 
-//             attributes.forEach((attribute) => {
-//               results[attribute.Name] = attribute.Value;
-//             });
-//             resolve(results);
-//           }
-//         });
-//       }),
-//     []
-//   );
+  const getUserAttributes = useCallback(
+    (currentUser) =>
+      new Promise((resolve, reject) => {
+        currentUser.getUserAttributes((err, attributes) => {
+          if (err) {
+            reject(err);
+          } else {
+            const results = {};
 
-//   const getSession = useCallback(
-//     () =>
-//       new Promise((resolve, reject) => {
-//         const user = UserPool.getCurrentUser();
-//         if (user) {
-//           user.getSession(async (err, session) => {
-//             if (err) {
-//               reject(err);
-//             } else {
-//               const attributes = await getUserAttributes(user);
-//               const token = session.getIdToken().getJwtToken();
-//               // use the token or Bearer depend on the wait BE handle, by default amplify API only need to token.
-//               axios.defaults.headers.common.Authorization = token;
-//               dispatch({
-//                 type: 'AUTHENTICATE',
-//                 payload: { isAuthenticated: true, user: attributes },
-//               });
-//               resolve({
-//                 user,
-//                 session,
-//                 headers: { Authorization: token },
-//               });
-//             }
-//           });
-//         } else {
-//           dispatch({
-//             type: 'AUTHENTICATE',
-//             payload: {
-//               isAuthenticated: false,
-//               user: null,
-//             },
-//           });
-//         }
-//       }),
-//     [getUserAttributes]
-//   );
+            attributes.forEach((attribute) => {
+              results[attribute.Name] = attribute.Value;
+            });
+            resolve(results);
+          }
+        });
+      }),
+    []
+  );
 
-//   const initial = useCallback(async () => {
-//     try {
-//       await getSession();
-//     } catch {
-//       dispatch({
-//         type: 'AUTHENTICATE',
-//         payload: {
-//           isAuthenticated: false,
-//           user: null,
-//         },
-//       });
-//     }
-//   }, [getSession]);
+  const getSession = useCallback(
+    () =>
+      new Promise((resolve, reject) => {
+        const user = UserPool.getCurrentUser();
+        if (user) {
+          user.getSession(async (err, session) => {
+            if (err) {
+              reject(err);
+            } else {
+              const attributes = await getUserAttributes(user);
+              const token = session.getIdToken().getJwtToken();
+              // use the token or Bearer depend on the wait BE handle, by default amplify API only need to token.
+              axios.defaults.headers.common.Authorization = token;
+              dispatch({
+                type: 'AUTHENTICATE',
+                payload: { isAuthenticated: true, user: attributes },
+              });
+              resolve({
+                user,
+                session,
+                headers: { Authorization: token },
+              });
+            }
+          });
+        } else {
+          dispatch({
+            type: 'AUTHENTICATE',
+            payload: {
+              isAuthenticated: false,
+              user: null,
+            },
+          });
+        }
+      }),
+    [getUserAttributes]
+  );
 
-//   useEffect(() => {
-//     initial();
-//   }, [initial]);
+  const initial = useCallback(async () => {
+    try {
+      await getSession();
+    } catch {
+      dispatch({
+        type: 'AUTHENTICATE',
+        payload: {
+          isAuthenticated: false,
+          user: null,
+        },
+      });
+    }
+  }, [getSession]);
 
-//   // We make sure to handle the user update here, but return the resolve value in order for our components to be
-//   // able to chain additional `.then()` logic. Additionally, we `.catch` the error and "enhance it" by providing
-//   // a message that our React components can use.
-//   const login = useCallback(
-//     (email, password) =>
-//       new Promise((resolve, reject) => {
-//         const user = new CognitoUser({
-//           Username: email,
-//           Pool: UserPool,
-//         });
+  useEffect(() => {
+    initial();
+  }, [initial]);
 
-//         const authDetails = new AuthenticationDetails({
-//           Username: email,
-//           Password: password,
-//         });
+  // We make sure to handle the user update here, but return the resolve value in order for our components to be
+  // able to chain additional `.then()` logic. Additionally, we `.catch` the error and "enhance it" by providing
+  // a message that our React components can use.
+  const login = useCallback(
+    (email, password) =>
+      new Promise((resolve, reject) => {
+        const user = new CognitoUser({
+          Username: email,
+          Pool: UserPool,
+        });
 
-//         user.authenticateUser(authDetails, {
-//           onSuccess: (data) => {
-//             getSession();
-//             resolve(data);
-//           },
-//           onFailure: (err) => {
-//             reject(err);
-//           },
-//           newPasswordRequired: () => {
-//             // Handle this on login page for update password.
-//             resolve({ message: 'newPasswordRequired' });
-//           },
-//         });
-//       }),
-//     [getSession]
-//   );
+        const authDetails = new AuthenticationDetails({
+          Username: email,
+          Password: password,
+        });
 
-//   // same thing here
-//   const logout = () => {
-//     const user = UserPool.getCurrentUser();
-//     if (user) {
-//       user.signOut();
-//       dispatch({ type: 'LOGOUT' });
-//     }
-//   };
+        user.authenticateUser(authDetails, {
+          onSuccess: (data) => {
+            getSession();
+            resolve(data);
+          },
+          onFailure: (err) => {
+            reject(err);
+          },
+          newPasswordRequired: () => {
+            // Handle this on login page for update password.
+            resolve({ message: 'newPasswordRequired' });
+          },
+        });
+      }),
+    [getSession]
+  );
 
-//   const register = (email, password, firstName, lastName) =>
-//     new Promise((resolve, reject) =>
-//       UserPool.signUp(
-//         email,
-//         password,
-//         [
-//           { Name: 'email', Value: email },
-//           { Name: 'name', Value: `${firstName} ${lastName}` },
-//         ],
-//         null,
-//         async (err) => {
-//           if (err) {
-//             reject(err);
-//             return;
-//           }
-//           resolve();
-//           window.location.href = PATH_AUTH.login;
-//         }
-//       )
-//     );
+  // same thing here
+  const logout = () => {
+    const user = UserPool.getCurrentUser();
+    if (user) {
+      user.signOut();
+      dispatch({ type: 'LOGOUT' });
+    }
+  };
 
-//   return (
-//     <AuthContext.Provider
-//       value={{
-//         ...state,
-//         method: 'cognito',
-//         user: {
-//           display_name: state?.user?.name || 'Minimals',
-//           role: 'admin',
-//           ...state.user,
-//         },
-//         login,
-//         register,
-//         logout,
-//       }}
-//     >
-//       {children}
-//     </AuthContext.Provider>
-//   );
-// }
+  const register = (
+    email, 
+    password, 
+    userType,
+    username
+    ) => 
+    new Promise((resolve, reject) =>
+      UserPool.signUp(
+        username,
+        // email,
+        password,
+        [
+          { Name: 'email', Value: email },
+        //   { Name: 'user', Value: `${firstName} ${lastName}` },
+          {Name: 'custom:UserType', Value: `${userType}`},
+        ],
+        null,
+        async (err, result)  => {
+          if (err) {
+            console.error('Error signing up:', err);
+            reject(err);
+            return;
+          } else {
+            console.log('Sign-up result:', result);
+            resolve(result.user);
+            resolve();
+            window.location.href = PATH_AUTH.login;
+            // console.log('Sign-up result:', result);
+            // resolve(result.user);
+            
 
-// export { AuthContext, AuthProvider };
+          }
+        //   resolve();
+        //   console.log('Sign-up result:', result);
+        //   resolve(result.user);
+        //   window.location.href = PATH_AUTH.login;
+        }
+      ),
+    //   console.log(
+    //     email, 
+    //     password, 
+    //     userType,
+    //     username),
+    );
+
+  return (
+    <AuthContext.Provider
+      value={{
+        ...state,
+        method: 'cognito',
+        user: {
+          display_name: state?.user?.name || 'User',
+          role: state?.user?.userType,
+          ...state.user,
+        },
+        login,
+        register,
+        logout,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
+}
+
+export { AuthContext, AuthProvider };

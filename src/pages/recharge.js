@@ -1,174 +1,94 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Stepper from '@mui/material/Stepper';
-import Step from '@mui/material/Step';
-import StepLabel from '@mui/material/StepLabel';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+// @mui
 import { styled } from '@mui/material/styles';
-import useResponsive from '../hooks/useResponsive';
+import { 
+  // Box, 
+  // Button, 
+  // Link, Typography,
+  Paper, Container, 
+  // Stack
+ } from '@mui/material';
+// routes
+// import { PATH_PAGE } from '../routes/paths';
+// layouts
+// import Layout from '../layouts';
+// components
 import Page from '../components/Page';
+// import HeaderBreadcrumbs from '../components/HeaderBreadcrumbs';
+// import NextLink from 'next/link';
+// sections
+import { Block } from '../sections/overview/Block';
+// import CustomizedStepper from '../sections/overview/mui/stepper/CustomizedStepper';
+// import VerticalLinearStepper from '../sections/overview/mui/stepper/VerticalLinearStepper';
+import LinearAlternativeLabel from '../sections/overview/mui/stepper/LinearAlternativeLabel';
+// import { ReactHookForm } from '../sections/overview/extra/form';
+// import HorizontalLinearStepper from '../sections/overview/mui/stepper/HorizontalLinearStepper';
 
 
+// ----------------------------------------------------------------------
 
 const RootStyle = styled('div')(({ theme }) => ({
-    [theme.breakpoints.up('md')]: {
-      display: 'flex',
-    },
-  }));
-  
-  const HeaderStyle = styled('header')(({ theme }) => ({
-    top: 0,
-    zIndex: 9,
-    lineHeight: 0,
-    width: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    position: 'absolute',
-    padding: theme.spacing(3),
-    justifyContent: 'space-between',
-    [theme.breakpoints.up('md')]: {
-      alignItems: 'flex-start',
-      padding: theme.spacing(7, 5, 0, 7),
-    },
-  }));
-  
-  // const SectionStyle = styled(Card)(({ theme }) => ({
-  //   width: '100%',
-  //   maxWidth: 464,
-  //   display: 'flex',
-  //   flexDirection: 'column',
-  //   justifyContent: 'center',
-  //   margin: theme.spacing(2, 0, 2, 2),
-  // }));
-  
-//   const ContentStyle = styled('div')(({ theme }) => ({
-//     maxWidth: 480,
-//     margin: 'auto',
-//     display: 'flex',
-//     minHeight: '100vh',
-//     flexDirection: 'column',
-//     justifyContent: 'center',
-//     padding: theme.spacing(12, 0),
-//   }));
-const steps = ['Purchase Information', 'Summary ', 'Payment', 'Complete Order'];
+  paddingTop: theme.spacing(11),
+  paddingBottom: theme.spacing(15),
+}));
 
+// ----------------------------------------------------------------------
 
+// MUIStepper.getLayout = function getLayout(page) {
+//   return <Layout variant="main">{page}</Layout>;
+// };
 
-export default function HorizontalLinearStepper() {
+// ----------------------------------------------------------------------
 
-    const smUp = useResponsive('up', 'sm');
-
-  const [activeStep, setActiveStep] = React.useState(0);
-  const [skipped, setSkipped] = React.useState(new Set());
-
-  const isStepOptional = (step) => step === 7;
-
-  const isStepSkipped = (step) => skipped.has(step);
-
-  const handleNext = () => {
-    let newSkipped = skipped;
-    if (isStepSkipped(activeStep)) {
-      newSkipped = new Set(newSkipped.values());
-      newSkipped.delete(activeStep);
-    }
-
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    setSkipped(newSkipped);
-  };
-
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
-
-  const handleSkip = () => {
-    if (!isStepOptional(activeStep)) {
-      // You probably want to guard against something like this,
-      // it should never occur unless someone's actively trying to break something.
-      throw new Error("You can't skip a step that isn't optional.");
-    }
-
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    setSkipped((prevSkipped) => {
-      const newSkipped = new Set(prevSkipped.values());
-      newSkipped.add(activeStep);
-      return newSkipped;
-    });
-  };
-
-  const handleReset = () => {
-    setActiveStep(0);
-  };
-
+export default function MUIStepper() {
   return (
-    <Page title="Recharge">
-        <RootStyle>
-          <HeaderStyle>
-            {/* <Logo /> */}
-            {smUp && (
-              <Typography variant="body2" sx={{ mt: { md: -2 } }}>
-                Want to become one of our merchants? {''}
-                {/* <NextLink href='/auth/merchant/register' passHref>
-                  <Link variant="subtitle2">Get started</Link>
-                </NextLink> */}
-              </Typography>
-            )}
-          </HeaderStyle>
-      <Stepper activeStep={activeStep}>
-        {steps.map((label, index) => {
-          const stepProps = {};
-          const labelProps = {};
-          if (isStepOptional(index)) {
-            labelProps.optional = (
-              <Typography variant="caption">Optional</Typography>
-            );
-          }
-          if (isStepSkipped(index)) {
-            stepProps.completed = false;
-          }
-          return (
-            <Step key={label} {...stepProps}>
-              <StepLabel {...labelProps}>{label}</StepLabel>
-            </Step>
-          );
-        })}
-      </Stepper>
-      {activeStep === steps.length ? (
-        <React.Fragment>
-          <Typography sx={{ mt: 2, mb: 1 }}>
-            All steps completed - you&apos;re finished
-          </Typography>
-          <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-            <Box sx={{ flex: '1 1 auto' }} />
-            <Button onClick={handleReset}>Reset</Button>
-          </Box>
-        </React.Fragment>
-      ) : (
-        <React.Fragment>
-          <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography>
-          <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-            <Button
-              color="inherit"
-              disabled={activeStep === 0}
-              onClick={handleBack}
-              sx={{ mr: 1 }}
-            >
-              Back
-            </Button>
-            <Box sx={{ flex: '1 1 auto' }} />
-            {isStepOptional(activeStep) && (
-              <Button color="inherit" onClick={handleSkip} sx={{ mr: 1 }}>
-                Skip
-              </Button>
-            )}
+    <Page title="Buy Power with Powerstack">
+      <RootStyle>
+        {/* <Box
+          sx={{
+            pt: 6,
+            pb: 1,
+            mb: 4,
+            bgcolor: (theme) => (theme.palette.mode === 'light' ? 'grey.200' : 'grey.800'),
+          }}
+        >
+          <Container>
+            <HeaderBreadcrumbs
+              heading="Powerstack Checkout"
+              links={[{ name: 'Home', href: 
+            '/' }, { name: 'Stepper' }]}
+              // moreLink="https://mui.com/components/steppers"
+            />
+          </Container>
+        </Box> */}
+   {/* <Typography variant="body2" sx={{ mt: { md: -2 } }}>
+                <NextLink href='/' passHref>
+                  <Link variant="subtitle2">Back Home</Link>
+                </NextLink>
+              </Typography> */}
+        <Container>
+          {/* <Stack spacing={1}> */}
+            
 
-            <Button onClick={handleNext}>
-              {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-            </Button>
-          </Box>
-        </React.Fragment>
-      )}
-   </RootStyle>
-      </Page>
+            <Block title="Buy Power Now">
+              <Paper
+                sx={{
+                  p: 1,
+                  width: '100%',
+                  // maxHeight: '90vh',
+                  boxShadow: (theme) => theme.customShadows.z8,
+                }}
+              >
+                {/* <Button variant="contained" target="_blank" rel="noopener">
+              LOGIN
+            </Button> */}
+                <LinearAlternativeLabel />
+              </Paper>
+            </Block>
+
+            
+          {/* </Stack> */}
+        </Container>
+      </RootStyle>
+    </Page>
   );
 }

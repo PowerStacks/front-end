@@ -258,10 +258,10 @@ function MenuDesktopItem({ item, isHome, isOpen, isOffset, onOpen, onClose }) {
   }
 
   return (
-    <NextLink href={path} passHref>
+    <Link href={path} passHref>
       <LinkStyle
         sx={{
-          ...(isHome && { color: 'common.white' }),
+          ...(isHome && { color: 'common.black' }),
           ...(isOffset && { color: 'text.primary' }),
           ...(isActive(path) && {
             color: 'primary.main',
@@ -270,6 +270,6 @@ function MenuDesktopItem({ item, isHome, isOpen, isOffset, onOpen, onClose }) {
       >
         {title}
       </LinkStyle>
-    </NextLink>
+    </Link>
   );
 }

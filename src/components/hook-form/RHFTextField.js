@@ -8,17 +8,28 @@ import { TextField } from '@mui/material';
 
 RHFTextField.propTypes = {
   name: PropTypes.string,
+  value: PropTypes.string,
 };
 
-export default function RHFTextField({ name, ...other }) {
+export default function RHFTextField({ name, 
+  value, 
+  ...other }) {
   const { control } = useFormContext();
 
   return (
     <Controller
       name={name}
       control={control}
-      render={({ field, fieldState: { error } }) => (
-        <TextField {...field} fullWidth error={!!error} helperText={error?.message} {...other} />
+      // value={value}
+      defaultValue={value}
+      render={({ field: { onChange, value }, fieldState: { error } }) => (
+        <TextField 
+        
+        value={value}
+        onChange={onChange}
+        fullWidth 
+        error={!!error} 
+        helperText={error?.message} {...other} />
       )}
     />
   );

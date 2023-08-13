@@ -45,7 +45,7 @@ export default function MainLayout({ children }) {
 
             <Typography variant="caption" component="p">
               © All rights reserved
-              <Link href="/">Powerstack {year}</Link>
+              <Link href="/"> Powerstack {year}</Link>
             </Typography>
           </Container>
         </Box>

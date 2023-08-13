@@ -46,6 +46,7 @@ import { store, persistor } from '../redux/store';
 import { getSettings } from '../utils/settings';
 // contexts
 import { SettingsProvider } from '../contexts/SettingsContext';
+import {NumberProvider} from '../contexts/PhoneNumberContext'
 import { CollapseDrawerProvider } from '../contexts/CollapseDrawerContext';
 // theme
 import ThemeProvider from '../theme';
@@ -88,6 +89,7 @@ export default function MyApp(props: { Component: any; pageProps: any; settings:
       <Head>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
         <title>Powerstack</title>
+        
       </Head>
 
       <AuthProvider>
@@ -101,12 +103,14 @@ export default function MyApp(props: { Component: any; pageProps: any; settings:
                       <MotionLazyContainer>
                         <ThemeColorPresets>
                           {/* <ThemeLocalization> */}
+                          <NumberProvider >
                             <RtlLayout>
                               {/* <ChartStyle /> */}
                               {/* <Settings /> */}
                               <ProgressBar />
                               {getLayout(<Component {...pageProps} />)}
                             </RtlLayout>
+                            </NumberProvider>
                           {/* </ThemeLocalization> */}
                         </ThemeColorPresets>
                       </MotionLazyContainer>

@@ -82,14 +82,24 @@ export default function RegisterMerchantForm() {
     //   }
     // }
     try {
-      await register({
-        email: data.email,
-        password: data.password,
-        // returnSecureToken: true
-        display_name: `${data.firstName} ${data.lastName}`,
-        is_merchant: true,
-        is_admin: false,
-      });
+      await register(
+        {email: data.email,
+          password: data.password,
+          // returnSecureToken: true
+          username: `${data.firstName} ${data.lastName}`,
+          userType: 'MERCHANT'
+          // is_merchant: false,
+          // is_admin: false,
+        }
+      //   {
+      //   email: data.email,
+      //   password: data.password,
+      //   // returnSecureToken: true
+      //   display_name: `${data.firstName} ${data.lastName}`,
+      //   is_merchant: true,
+      //   is_admin: false,
+      // }
+      );
       console.log({
         email: data.email,
         password: data.password,

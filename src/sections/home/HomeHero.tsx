@@ -5,23 +5,20 @@ import { styled } from '@mui/material/styles';
 import { Button, Box, Container, Typography, Stack, InputAdornment, IconButton, InputLabel } from '@mui/material';
 // routes
 import { PATH_AUTH } from '../../routes/paths';
-// components
-// import Image from '../../components/Image';
 import Iconify from '../../components/Iconify';
-// import TextIconLabel from '../../components/TextIconLabel';
 import { MotionContainer, 
   // varFade
  } from '../../components/animate';
 import HeroImg from '../../../public/images/heroImg.webp';
 // import Image from 'next/image';
 import OutlinedInput from '@mui/material/OutlinedInput';
-import React from 'react';
+// import React, { useState } from 'react';
 import FormControl from '@mui/material/FormControl';
 // import Fingerprint from '@mui/icons-material/Fingerprint';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import PhonelinkLockIcon from '@mui/icons-material/PhonelinkLock';
-// import Visibility from '@mui/icons-material/Visibility';
-// import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { useContext } from 'react';
+import {NumberContext} from '../../contexts/PhoneNumberContext'
 
 // ----------------------------------------------------------------------
 
@@ -59,58 +56,20 @@ const ContentStyle: any = styled((props) => <Stack spacing={5} {...props} />)(({
   },
 }));
 
-// const HeroOverlayStyle = styled(m.img)({
-//   zIndex: 9,
-//   width: '100%',
-//   height: '100%',
-//   objectFit: 'cover',
-//   position: 'absolute',
-// });
-
-
-
-// const HeroImgStyle = styled(m.img)(({ theme }) => ({
-//   top: 0,
-//   right: 0,
-//   bottom: 0,
-//   zIndex: 8,
-//   width: '100%',
-//   margin: 'auto',
-//   position: 'absolute',
-//   [theme.breakpoints.up('lg')]: {
-//     right: '8%',
-//     width: 'auto',
-//     height: '48vh',
-//   },
-// }));
 
 // ----------------------------------------------------------------------
 
 export default function HomeHero() {
 
-  // const [showPassword, setShowPassword] = React.useState(false);
-
-  // const handleClickShowPassword = () => setShowPassword((show) => !show);
-
-  // const handleMouseDownPassword = (event: { preventDefault: () => void; }) => {
-  //   event.preventDefault();
-  // };
+   
+  const {phoneNumber, setPhoneNumber} = useContext(NumberContext);
+    
+  // const [phoneNumber, setPhoneNumber] = useState('')
 
   return (
     <MotionContainer animate={undefined}>
       <RootStyle>
-        {/* <HeroOverlayStyle
-          alt="overlay"
-          src="https://minimal-assets-api.vercel.app/assets/overlay.svg"
-          variants={varFade().in}
-        /> */}
-
-        {/* <HeroImgStyle
-          alt="hero"
-          src={HeroImg.src}
-          variants={varFade().inUp}
-        /> */}
-
+        
         <Container sx={{display: 'flex', justifyContent: 'space-between'}}>
           <ContentStyle sx={{display: 'flex'}}>
             {/* <m.div variants={varFade().inRight}> */}
@@ -147,23 +106,7 @@ export default function HomeHero() {
               </NextLink>
             {/* </m.div> */}
 
-            {/* <Stack spacing={2.5}>
-              <m.div variants={varFade().inRight}>
-                <Typography variant="overline" sx={{ color: 'primary.light' }}>
-                  Available For
-                </Typography>
-              </m.div> */}
-
-            {/* <Stack direction="row" spacing={1.5} justifyContent={{ xs: 'center', md: 'flex-start' }}>
-                {['ic_sketch', 'ic_figma', 'ic_js', 'ic_ts', 'ic_nextjs'].map((resource) => (
-                  <m.img
-                    key={resource}
-                    variants={varFade().inRight}
-                    src={`https://minimal-assets-api.vercel.app/assets/images/home/${resource}.svg`}
-                  />
-                ))}
-              </Stack> */}
-            {/* </Stack> */}
+          
           </ContentStyle>
 
           <ContentStyle sx={{ display: 'flex',  textAlign: 'center', mt:6, alignContent: 'end',
@@ -173,11 +116,15 @@ export default function HomeHero() {
   border: '1px solid #217d50', display: 'flex',
   alignSelf: 'center', mt: '15%', p: '5%',  justifyContent: 'center', alignContent: 'center', flexWrap: 'wrap' }}>
         <Typography variant="h4" gutterBottom>
-         Buy with your phone number
+         Buy with your number
         </Typography>
         <FormControl sx={{ width: '100%' }} variant="outlined">
           <InputLabel htmlFor="outlined-adornment-password">Phone Number</InputLabel>
+          
           <OutlinedInput sx={{mb: '15%'}}
+          value={phoneNumber}
+          onChange={(e)=>setPhoneNumber(e.target.value)}
+          autoFocus
           color="success"
             id="outlined-adornment-password"
             // type={showPassword ? 'text' : 'password'}
@@ -211,9 +158,7 @@ export default function HomeHero() {
                 </Button>
               </NextLink>
         </Box>
-         {/* <RHFTextField name="phone" label="Phone Number" value={phone}
-  onChange={(e: { target: { value: SetStateAction<string>; }; }) => setPhone(e.target.value)} />  */}
-    {/* </FormProvider>  */}
+        
       </ContentStyle> 
         </Container>
       </RootStyle>

@@ -38,6 +38,7 @@
     "@types/react": "18.2.6",
     "@types/react-dom": "18.2.4",
     "@types/react-slick": "^0.23.10",
+    "amazon-cognito-identity-js": "^6.3.2",
     "apexcharts": "^3.40.0",
     "auth0-spa-ts": "^1.13.11",
     "axios": "^1.4.0",
