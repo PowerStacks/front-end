@@ -21,7 +21,7 @@ const menuConfig = [
   {
     title: 'About Us',
     icon: <Iconify icon={'ic:round-grain'} {...ICON_SIZE} />,
-    path: '/about-us',
+    path: '/maintenance',
   },
   // {
   //   title: 'Pages',
@@ -65,12 +65,12 @@ const menuConfig = [
   {
     title: 'Merchant',
     icon: <Iconify icon={'eva:book-open-fill'} {...ICON_SIZE} />,
-    path: '/about-us',
+    path: '/maintenance',
   }, 
   {
     title: 'FAQs',
     icon: <Iconify icon={'eva:file-fill'} {...ICON_SIZE} />,
-    path: '/about-us',
+    path: '/maintenance',
   }, 
 ];
 

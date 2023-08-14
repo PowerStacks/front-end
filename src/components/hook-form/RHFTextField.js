@@ -20,11 +20,11 @@ export default function RHFTextField({ name,
     <Controller
       name={name}
       control={control}
-      // value={value}
-      defaultValue={value}
+      value={value}
+      
       render={({ field: { onChange, value }, fieldState: { error } }) => (
         <TextField 
-        
+      defaultValue={value}  
         value={value}
         onChange={onChange}
         fullWidth 

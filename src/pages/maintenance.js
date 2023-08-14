@@ -8,7 +8,7 @@ import Layout from '../layouts';
 // components
 import Page from '../components/Page';
 //
-import { MaintenanceIllustration } from '../assets';
+// import { MaintenanceIllustration } from '../assets';
 
 // ----------------------------------------------------------------------
 
@@ -36,13 +36,13 @@ export default function Maintenance() {
           <Typography variant="h3" paragraph>
             Website currently under maintenance
           </Typography>
-          <Typography sx={{ color: 'text.secondary' }}>We are currently working hard on this page!</Typography>
+          <Typography sx={{ color: 'text.secondary', mb: 3 }}>We are currently working hard on this page!</Typography>
 
-          <MaintenanceIllustration sx={{ my: 10, height: 240 }} />
+          {/* <MaintenanceIllustration sx={{ my: 10, height: 240 }} /> */}
 
           <NextLink href="/" passHref>
             <Button size="large" variant="contained">
-              Go to Home
+              Back Home
             </Button>
           </NextLink>
         </Container>
